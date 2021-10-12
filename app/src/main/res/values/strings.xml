@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Chefs Kiss</string>
     <string name="log_in">Log In</string>
-    <string name="create_account">Create Account</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
+    <string name="create_account">Create Account</string>
 </resources>

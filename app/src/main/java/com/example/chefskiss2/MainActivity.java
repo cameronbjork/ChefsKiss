@@ -1,4 +1,4 @@
-package com.example.chefskiss;
+package com.example.chefskiss2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.chefskiss.R;
+import com.example.chefskiss2.R;
 
 public class MainActivity extends AppCompatActivity {
 

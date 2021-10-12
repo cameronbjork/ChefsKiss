@@ -1,4 +1,4 @@
-package com.example.chefskiss;
+package com.example.chefskiss2;
 
 import org.junit.Test;
 

@@ -23,6 +23,19 @@ public class AccountController {
 
         //Add to DB here
 
+
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     public Boolean isLoggedIn() {

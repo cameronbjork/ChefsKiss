@@ -33,7 +33,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //this is called if the database version number changes. It prevents previous users apps
     // from breaking when you change the database design
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
+        db.execSQL("DROP TABLE " + USER_TABLE);
+        onCreate(db);
 
     }
 

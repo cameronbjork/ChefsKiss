@@ -23,7 +23,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="85dp"
-        android:layout_marginEnd="102dp"
+        android:layout_marginEnd="93dp"
         android:autofillHints="testHint"
         android:ems="10"
         android:hint="@string/email"
@@ -62,15 +62,15 @@
 
     <TextView
         android:id="@+id/invalidInfoMessage"
-        android:layout_width="205dp"
-        android:layout_height="99dp"
+        android:layout_width="166dp"
+        android:layout_height="85dp"
         android:layout_below="@+id/createAccountBtn2"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="111dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="155dp"
         android:text="@string/password_must_contain_n_uppercase_letter_n_lowercase_letter_n_number_n_special_character"
-        android:textColor="#FF0000" />
+        android:textColor="@color/orange_soda" />
 </RelativeLayout>

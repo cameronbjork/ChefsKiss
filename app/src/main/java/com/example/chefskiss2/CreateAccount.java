@@ -55,7 +55,10 @@ public class CreateAccount extends AppCompatActivity {
 
                     //Checks if the password matches
                     if(m.matches()) {
-                        CreateAccount.this.AC = new AccountController(new Account(usernameString, emailString, passwordString));
+                        Account account = new Account(usernameString, emailString, passwordString);
+                        CreateAccount.this.AC = new AccountController(account);
+                        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
+                        Boolean success = databaseHelper.addOne(account);
 
                         //If account is stored in AC
                         if (CreateAccount.this.AC.isLoggedIn()) {

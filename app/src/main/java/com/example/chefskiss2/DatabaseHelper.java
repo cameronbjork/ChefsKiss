@@ -39,8 +39,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-    //this is called if a user is creating a new account
-    public boolean addOne(AccountController account) {
+
+    public boolean addOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

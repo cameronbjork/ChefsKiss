@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
-
+    //this is called if a user is creating a new account
     public boolean addOne(AccountController account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -55,6 +55,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+
+
+    }
+    //this is called if the user decides to delete their account
+    public boolean deleteOne(AccountController account) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(USER_TABLE,"name=?",null);
+        db.close();
 
 
     }

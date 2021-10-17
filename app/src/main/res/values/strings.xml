@@ -5,7 +5,7 @@
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="create_account">Create Account</string>
-    <string name="username">Username</string>
+    <string name="username2">Username</string>
     <string name="password_must_contain_n_uppercase_letter_n_lowercase_letter_n_number_n_special_character">Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)</string>
-    <string name="password">Password</string>
+    <string name="password2">Password</string>
 </resources>

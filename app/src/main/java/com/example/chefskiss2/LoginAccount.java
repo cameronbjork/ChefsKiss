@@ -39,13 +39,11 @@ public class LoginAccount extends AppCompatActivity {
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(LoginAccount.this);
 
-
-                Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                        " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
                 try {
-
+                    Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
+                            " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    errorMessage.setText("*Invalid Username");
                 }
             }
         });

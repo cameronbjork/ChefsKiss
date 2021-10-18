@@ -25,6 +25,8 @@ public class AccountController {
 
     }
 
+
+
     public Boolean isLoggedIn() {
         return this.username != null;
     }

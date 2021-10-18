@@ -38,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE " + USER_TABLE);
         onCreate(db);
 
+
     }
 
     public boolean addOne(Account account) {
@@ -49,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PASSWORD, account.getPassword());
 
         long insert = db.insert(USER_TABLE, null, cv);
+        db.close();
 
         if (insert == -1) {
             return false;
@@ -59,11 +61,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     //this is called if the user decides to delete their account
-    public boolean deleteOne(AccountController account) {
+    public boolean deleteOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(USER_TABLE,"name=?",null);
+        String deleteAccount = "DELETE FROM " + USER_TABLE  +
+                " WHERE " + account.getUsername() + "=" +  COLUMN_USERNAME;
+
+        db.execSQL(deleteAccount);
         db.close();
 
 

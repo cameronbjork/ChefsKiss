@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -24,8 +25,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String createTableStatement = "CREATE TABLE " + USER_TABLE + " (" + COLUMN_ID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + "TEXT, " + COLUMN_USERNAME
-                + "TEXT, " + COLUMN_PASSWORD + "TEXT )";
+                " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USERNAME
+                + "TEXT, " + COLUMN_PASSWORD + " TEXT)";
 
         db.execSQL(createTableStatement);
     }
@@ -65,10 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String deleteAccount = "DELETE FROM " + USER_TABLE  +
-                " WHERE " + account.getUsername() + "=" +  COLUMN_USERNAME;
-
-        db.execSQL(deleteAccount);
+        long delete = db.delete(USER_TABLE, COLUMN_USERNAME +" = " + account.getUsername(), null);
         db.close();
 
 

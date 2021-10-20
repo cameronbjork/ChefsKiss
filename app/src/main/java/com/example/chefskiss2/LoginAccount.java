@@ -2,6 +2,8 @@ package com.example.chefskiss2;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,11 +39,12 @@ public class LoginAccount extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                DatabaseHelper databaseHelper = new DatabaseHelper(LoginAccount.this);
+                SQLiteDatabase db = this.getReadableDatabase();
 
                 try {
-                    Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                            " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
+                    Cursor password = db.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD
+                            + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
+                            new String[] {"1"});
                 } catch (Exception e) {
                     errorMessage.setText("*Invalid Username");
                 }

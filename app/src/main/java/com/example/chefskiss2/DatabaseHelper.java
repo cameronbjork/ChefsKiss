@@ -46,9 +46,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_EMAIL, account.getEmail());
-        cv.put(COLUMN_USERNAME, account.getUsername());
-        cv.put(COLUMN_PASSWORD, account.getPassword());
+
+        String email = account.getEmail();
+        String username = account.getUsername();
+        String password = account.getPassword();
+        cv.put(COLUMN_EMAIL, email);
+        cv.put(COLUMN_USERNAME, username);
+        cv.put(COLUMN_PASSWORD, password);
+        
 
         long insert = db.insert(USER_TABLE, null, cv);
         db.close();
@@ -62,14 +67,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     //this is called if the user decides to delete their account
-    public boolean deleteOne(Account account) {
+    public void deleteOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         long delete = db.delete(USER_TABLE, COLUMN_USERNAME +" = " + account.getUsername(), null);
         db.close();
 
-
     }
+
 
 }

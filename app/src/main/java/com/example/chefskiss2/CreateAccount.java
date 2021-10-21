@@ -25,9 +25,7 @@ public class CreateAccount extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.password);
         TextView errorMessage = (TextView) findViewById(R.id.invalidInfoMessage);
 
-        String emailString = email.getText().toString();
-        String usernameString = username.getText().toString();
-        String passwordString = password.getText().toString();
+
 
         Button createAccount = (Button) findViewById(R.id.createAccountBtn2);
 
@@ -36,6 +34,9 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String emailString = email.getText().toString();
+                String usernameString = username.getText().toString();
+                String passwordString = password.getText().toString();
 
                 //*** Add later if username is already taken once DB is implemented
                 if (emailString.contains("@") && emailString.endsWith(".com")) {
@@ -61,7 +62,7 @@ public class CreateAccount extends AppCompatActivity {
                         Boolean success = databaseHelper.addOne(account);
 
                         //If account is stored in AC
-                        if (CreateAccount.this.AC.isLoggedIn()) {
+                        if (success) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);
                             startActivity(intent);
                         }

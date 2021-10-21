@@ -34,12 +34,12 @@ public class LoginAccount extends AppCompatActivity {
         Button loginAccount = (Button) findViewById(R.id.loginBtn);
 
 
-        loginAccount.setOnClickListener(new View.OnClickListener() {
+        /**loginAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                SQLiteDatabase db = this.getReadableDatabase();
+                SQLiteDatabase db = new this.getReadableDatabase();
 
                 try {
                     Cursor password = db.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD
@@ -49,7 +49,7 @@ public class LoginAccount extends AppCompatActivity {
                     errorMessage.setText("*Invalid Username");
                 }
             }
-        });
+        }); **/
 
     }
 }

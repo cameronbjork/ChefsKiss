@@ -36,8 +36,6 @@ public class AccountInfoPage extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked editaccountbtn.");
 
-                Intent intent = new Intent(AccountInfoPage.this);
-                startActivity(intent);
             }
         });
     }

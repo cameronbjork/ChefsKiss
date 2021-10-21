@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_homepage.xml" value="0.1" />
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_individual_recipe_page.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.153125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />

@@ -42,33 +42,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addOne(Account account) {
+    public void addOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_EMAIL, account.getEmail());
-        cv.put(COLUMN_USERNAME, account.getUsername());
-        cv.put(COLUMN_PASSWORD, account.getPassword());
+        //ContentValues cv = new ContentValues();
+        //cv.put(COLUMN_EMAIL, account.getEmail());
+        //cv.put(COLUMN_USERNAME, account.getUsername());
+        //cv.put(COLUMN_PASSWORD, account.getPassword());
 
-        long insert = db.insert(USER_TABLE, null, cv);
+        //long insert = db.insert(USER_TABLE, null, cv);
+        String addAccount = "INSERT INTO " + USER_TABLE + " ( " + COLUMN_EMAIL + ", " +
+            COLUMN_USERNAME + ", " + COLUMN_PASSWORD + ") VALUES( " + account.getEmail() + ", " +
+            account.getUsername() + ", " + account.getPassword() + ")";
+
+        db.execSQL(addAccount);
         db.close();
 
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        //if (insert == -1) {
+         //   return false;
+        //} else {
+        //    return true;
+        //}
 
 
     }
+
     //this is called if the user decides to delete their account
     public boolean deleteOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long delete = db.delete(USER_TABLE, COLUMN_USERNAME +" = " + account.getUsername(), null);
+        long delete = db.delete(USER_TABLE, COLUMN_USERNAME + " = " + account.getUsername(), null);
         db.close();
 
+        if (delete == -1) {
+            return false;
+        } else {
+            return true;
+        }
 
     }
 

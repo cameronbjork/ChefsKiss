@@ -2,6 +2,7 @@ package com.example.chefskiss2;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -53,23 +54,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long insert = db.insert(USER_TABLE, null, cv);
         db.close();
 
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return insert != -1;
 
 
     }
     //this is called if the user decides to delete their account
-    public boolean deleteOne(Account account) {
+    public String deleteOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         long delete = db.delete(USER_TABLE, COLUMN_USERNAME +" = " + account.getUsername(), null);
         db.close();
 
+        return deleteAccount;
 
     }
 
+    public Cursor rawQuery(String s, String[] strings) {
+        return null ;
+    }
 }

@@ -12,12 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
 public class LoginAccount extends AppCompatActivity {
-    public AccountController AC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +28,6 @@ public class LoginAccount extends AppCompatActivity {
 
         Button loginAccount = (Button) findViewById(R.id.loginBtn);
 
-
         loginAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,8 +37,13 @@ public class LoginAccount extends AppCompatActivity {
 
                 try {
                     Cursor password = db.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD
-                            + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
+                                    + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
                             new String[] {"1"});
+                    if (passwordString.equals(password.toString())) {
+                        Intent intent = new Intent(LoginAccount.this, Homepage.class);
+                        startActivity(intent);
+                    }
+
                 } catch (Exception e) {
                     errorMessage.setText("*Invalid Username");
                 }
@@ -53,4 +52,3 @@ public class LoginAccount extends AppCompatActivity {
 
     }
 }
-

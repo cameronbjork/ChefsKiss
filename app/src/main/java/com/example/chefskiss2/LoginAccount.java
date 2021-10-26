@@ -34,11 +34,7 @@ public class LoginAccount extends AppCompatActivity {
                 DatabaseHelper databaseHelper = new DatabaseHelper(LoginAccount.this);
 
                 try {
-                    Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                            " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
-                    password = db.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD
-                                    + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
-                            new String[] {"1"});
+
                     if (passwordString.equals(password.toString())) {
                         Intent intent = new Intent(LoginAccount.this, Homepage.class);
                         startActivity(intent);

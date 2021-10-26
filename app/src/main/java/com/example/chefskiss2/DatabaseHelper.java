@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -16,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "USERNAME";
     public static final String COLUMN_PASSWORD = "PASSWORD";
     public static final String COLUMN_ID = "ID";
+    public static final int id = -1;
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "chefsKiss.db", null, 1);
@@ -69,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //this is called if the user decides to delete their account
-    public String deleteOne(Account account) {
+    public Boolean deleteOne(Account account) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -81,6 +86,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+
+    }
+
+    public void login(Account account) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        String [] sqlSelect = {"id", "email", "username", "password"};
+        String tableName = USER_TABLE;
+        String login = "SELECT " + COLUMN_USERNAME + ", " + COLUMN_PASSWORD + " FROM " + USER_TABLE
+                + " WHERE " + COLUMN_USERNAME + " = " + account.getUsername() + "&&" + COLUMN_PASSWORD +
+                " = " + account.getPassword();
+        Cursor cursor = db.rawQuery(login, null, null);
+        List<Account> result = new ArrayList();
+        if (cursor.moveToFirst()) {
+            id = cursor.getId();
+
+        }
+
+
+
+        db.execSQL(login);
+
+        Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
+                " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
+        password = db.rawQuery("SELECT " + COLUMN_PASSWORD + " FROM " + USER_TABLE + DatabaseHelper.COLUMN_PASSWORD
+                        + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
+                new String[] {"1"});
 
     }
 

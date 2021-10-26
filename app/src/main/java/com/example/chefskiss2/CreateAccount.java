@@ -15,16 +15,21 @@ import java.util.regex.Pattern;
 public class CreateAccount extends AppCompatActivity {
     public AccountController AC;
 
+    public static final String EXTRA_ID = "com.example.chefskiss2.database.EXTRA_ID";
+    public static final String EXTRA_EMAIL = "com.example.chefskiss2.database.EXTRA_EMAIL";
+    public static final String EXTRA_USERNAME = "com.example.chefskiss2.database.EXTRA_USERNAME";
+    public static final String EXTRA_PASSWORD = "com.example.chefskiss2.database.EXTRA_PASSWORD";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
         EditText email = (EditText) findViewById(R.id.userEmail);
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         TextView errorMessage = (TextView) findViewById(R.id.invalidInfoMessage);
-
 
 
         Button createAccount = (Button) findViewById(R.id.createAccountBtn2);
@@ -56,13 +61,10 @@ public class CreateAccount extends AppCompatActivity {
 
                     //Checks if the password matches
                     if(m.matches()) {
+                        //saveUser(emailString, usernameString, passwordString);
                         Account account = new Account(usernameString, emailString, passwordString);
                         CreateAccount.this.AC = new AccountController(account);
-                        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
-                        Boolean success = databaseHelper.addOne(account);
-
-                        //If account is stored in AC
-                        if (success) {
+                        if(databaseHelper.addOne(emailString, usernameString, passwordString) == true) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);
                             startActivity(intent);
                         }
@@ -74,6 +76,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-
     }
+
+
 }

@@ -56,7 +56,8 @@ public class CreateAccount extends AppCompatActivity {
                     if(m.matches()) {
                         Account account = new Account(usernameString, emailString, passwordString);
                         CreateAccount.this.AC = new AccountController(account);
-                        Boolean success = databaseHelper.addOne(account);
+                        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
+                        databaseHelper.addOne(account);
 
                         //If account is stored in AC
                         if (CreateAccount.this.AC.isLoggedIn()) {

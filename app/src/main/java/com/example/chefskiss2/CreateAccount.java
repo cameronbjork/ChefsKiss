@@ -64,7 +64,7 @@ public class CreateAccount extends AppCompatActivity {
                         //saveUser(emailString, usernameString, passwordString);
                         Account account = new Account(usernameString, emailString, passwordString);
                         CreateAccount.this.AC = new AccountController(account);
-                        if(databaseHelper.addOne(emailString, usernameString, passwordString) == true) {
+                        if(databaseHelper.addOne(account) == true) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);
                             startActivity(intent);
                         }

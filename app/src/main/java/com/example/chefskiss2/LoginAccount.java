@@ -1,7 +1,6 @@
 package com.example.chefskiss2;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ public class LoginAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
@@ -26,32 +26,24 @@ public class LoginAccount extends AppCompatActivity {
 
         Button loginAccount = (Button) findViewById(R.id.loginBtn);
 
-        /**
         loginAccount.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
-
-               SQLiteDatabase db = new this.getReadableDatabase();
-                DatabaseHelper databaseHelper = new DatabaseHelper(LoginAccount.this);
-
+                Account acct = new Account(usernameString, passwordString);
+                databaseHelper.login(acct);
                 try {
-                    Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                            " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
-                    password = db.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD
-                                    + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
-                            new String[] {"1"});
+
                     if (passwordString.equals(password.toString())) {
                         Intent intent = new Intent(LoginAccount.this, Homepage.class);
                         startActivity(intent);
                     }
 
                 } catch (Exception e) {
-                    errorMessage.setText("*Invalid Username");
+                    errorMessage.setText(R.string.invalidusername);
                 }
             }
-        }); **/
+        });
 
     }
 }

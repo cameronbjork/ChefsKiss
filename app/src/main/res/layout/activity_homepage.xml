@@ -6,15 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".Homepage">
 
+
+    <Button
+        android:id="@+id/buttontoaccinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="548dp"
+        android:text="Account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:text="Home Page"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="221dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton3"
+        android:layout_below="@+id/imageButton4"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="28dp"
         android:text="Find Recipe's"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -24,37 +50,26 @@
         android:id="@+id/imageButton4"
         android:layout_width="410dp"
         android:layout_height="168dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="1dp"
-        app:srcCompat="@drawable/recipe" />
-
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="380dp"
-        android:layout_height="55dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="17dp"
-        android:queryHint="Chicken Alfredo..." />
+        android:layout_marginEnd="-6dp"
+        app:srcCompat="@drawable/recipe" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="410dp"
         android:layout_height="168dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-5dp"
         app:srcCompat="@drawable/recipe" />
 
     <TextView
@@ -64,7 +79,7 @@
         android:layout_below="@+id/search"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="107dp"
         android:layout_marginTop="25dp"
         android:text="Saved Recipe's"
         android:textAlignment="center"

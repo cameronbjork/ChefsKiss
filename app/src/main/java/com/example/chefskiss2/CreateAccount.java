@@ -19,15 +19,12 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
+        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
         EditText email = (EditText) findViewById(R.id.userEmail);
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         TextView errorMessage = (TextView) findViewById(R.id.invalidInfoMessage);
 
-        String emailString = email.getText().toString();
-        String usernameString = username.getText().toString();
-        String passwordString = password.getText().toString();
 
         Button createAccount = (Button) findViewById(R.id.createAccountBtn2);
 
@@ -35,7 +32,9 @@ public class CreateAccount extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String emailString = email.getText().toString();
+                String usernameString = username.getText().toString();
+                String passwordString = password.getText().toString();
 
                 //*** Add later if username is already taken once DB is implemented
                 if (emailString.contains("@") && emailString.endsWith(".com")) {

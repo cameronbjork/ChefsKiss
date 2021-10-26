@@ -10,6 +10,8 @@ public class AccountController {
         this.account = account;
     }
 
+
+
     public Boolean isLoggedIn() {
         return this.account.getUsername() != null;
     }

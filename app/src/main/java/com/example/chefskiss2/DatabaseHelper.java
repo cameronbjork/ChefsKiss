@@ -100,7 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(login, null, null);
         List<Account> result = new ArrayList();
         if (cursor.moveToFirst()) {
-            id = cursor.getId();
+            //id = cursor.getId();
 
         }
 
@@ -108,11 +108,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(login);
 
-        Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
-        password = db.rawQuery("SELECT " + COLUMN_PASSWORD + " FROM " + USER_TABLE + DatabaseHelper.COLUMN_PASSWORD
-                        + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
-                new String[] {"1"});
 
     }
 

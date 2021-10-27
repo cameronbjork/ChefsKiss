@@ -5,15 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String USER_TABLE = "user_table";
     public static final String COLUMN_EMAIL = "email";
@@ -52,71 +49,109 @@ import java.util.List;
 
         SQLiteDatabase db = this.getWritableDatabase();
 
+        ArrayList<Account> allAccounts = this.getAllUsers();
+
+        for (int i=0; i < allAccounts.size(); i++) {
+            if (allAccounts.get(i).getUsername().contains(account.getUsername())) {
+                return false;
+            }
+        }
+
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_EMAIL +"TEXT", account.getEmail());
         cv.put(COLUMN_USERNAME+"TEXT", account.getUsername());
         cv.put(COLUMN_PASSWORD+"TEXT", account.getPassword());
 
         long insert = db.insert(USER_TABLE, null, cv);
+        db.close();
 
         if (insert == -1) {
             return false;
         } else {
             return true;
         }
-
-
     }
 
-    //this is called if the user decides to delete their account
-    public boolean deleteOne(Account account) {
+    public ArrayList<Account> getAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + USER_TABLE, null);
 
+        ArrayList<Account> accountList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                int tempCurs = cursor.getColumnIndex("USERNAMETEXT");
+                String username = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex("EMAILTEXT");
+                String email = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex("PASSWORDTEXT");
+                String password = cursor.getString(tempCurs);
+
+
+                Account temp = new Account(username, email, password);
+                accountList.add(temp);
+
+                cursor.moveToNext();
+            }
+        }
+        
+        return accountList;
+    }
+
+    public boolean updateOne(Account oldAccount, Account newAccount) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long delete = db.delete(USER_TABLE, COLUMN_USERNAME + " = " + account.getUsername(), null);
-        db.close();
+        ContentValues cv = new ContentValues();
+        cv.put("USERNAMETEXT", newAccount.getUsername());
+        cv.put("PASSWORDTEXT", newAccount.getPassword());
+        cv.put("EMAILTEXT", newAccount.getEmail());
 
-        if (delete == -1) {
+
+        long result = db.update(USER_TABLE, cv, "USERNAMETEXT=?", new String[]{oldAccount.getUsername()});
+
+        if (result == -1) {
             return false;
         } else {
             return true;
         }
     }
 
-    public void login(Account account) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-        String [] sqlSelect = {"id", "email", "username", "password"};
-        String tableName = USER_TABLE;
-        String login = "SELECT " + COLUMN_USERNAME + "TEXT, " + COLUMN_PASSWORD + "TEXT FROM " + USER_TABLE
-                + " WHERE " + COLUMN_USERNAME + "TEXT = " + account.getUsername() + "&&" + COLUMN_PASSWORD +
-                "TEXT = " + account.getPassword();
-        Cursor cursor = db.rawQuery(login, null, null);
-        List<Account> result = new ArrayList();
 
-        if (cursor.moveToFirst()) {
-            //id = cursor.getId();
+        //this is called if the user decides to delete their account
+        public boolean deleteOne (Account account){
 
-       /** if (cursor.moveToFirst()) {
-            id = cursor.getId();
+            SQLiteDatabase db = this.getWritableDatabase();
 
+            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?", new String[]{account.getUsername()});
+            db.close();
 
+            if (delete == -1) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
+    public Account login(Account account) {
+        ArrayList<Account> allUsers = this.getAllUsers();
 
-
-        db.execSQL(login);
-
-       /** Cursor password = databaseHelper.rawQuery("SELECT  " + DatabaseHelper.COLUMN_PASSWORD + " WHERE" + usernameString +
-                " = " + DatabaseHelper.COLUMN_USERNAME, new String[] {"1"});
-        password = db.rawQuery("SELECT " + COLUMN_PASSWORD + " FROM " + USER_TABLE + DatabaseHelper.COLUMN_PASSWORD
-                        + " WHERE" + usernameString + " = " + DatabaseHelper.COLUMN_USERNAME,
-                new String[] {"1"}); 
-
+        for (int i = 0; i < allUsers.size(); i++) {
+            if(allUsers.get(i).getUsername().equals(account.getUsername())) {
+                if (allUsers.get(i).getPassword().equals(account.getPassword())) {
+                    allUsers.get(i).setLoginStatus(true);
+                    return allUsers.get(i);
+                } else {
+                    allUsers.get(i).setLoginStatus(false);
+                    return allUsers.get(i);
+                }
+            }
+        }
+        return null;
     }
 
     public Cursor rawQuery(String s, String[] strings) {
         return null ;
     }
 }
-**/

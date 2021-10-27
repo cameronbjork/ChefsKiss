@@ -15,19 +15,12 @@ import java.util.regex.Pattern;
 public class CreateAccount extends AppCompatActivity {
     public AccountController AC;
 
-    public static final String EXTRA_ID = "com.example.chefskiss2.database.EXTRA_ID";
-    public static final String EXTRA_EMAIL = "com.example.chefskiss2.database.EXTRA_EMAIL";
-    public static final String EXTRA_USERNAME = "com.example.chefskiss2.database.EXTRA_USERNAME";
-    public static final String EXTRA_PASSWORD = "com.example.chefskiss2.database.EXTRA_PASSWORD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
-        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
-
-        //DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
         EditText email = (EditText) findViewById(R.id.userEmail);
         EditText username = (EditText) findViewById(R.id.username);
@@ -41,7 +34,6 @@ public class CreateAccount extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 String emailString = email.getText().toString();
                 String usernameString = username.getText().toString();
@@ -68,15 +60,13 @@ public class CreateAccount extends AppCompatActivity {
                         //saveUser(emailString, usernameString, passwordString);
                         Account account = new Account(usernameString, emailString, passwordString);
                         CreateAccount.this.AC = new AccountController(account);
-                        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
-                        ;
 
-                        //If account is stored in AC
-                        //if (databaseHelper.addOne(account)) {
-
-                        if(databaseHelper.addOne(account) == true) {
+                        if(databaseHelper.addOne(account)) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);
+                            intent.putExtra("account", account);
                             startActivity(intent);
+                        } else {
+                            errorMessage.setText("Username already taken");
                         }
                     } else {
                         errorMessage.setText("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)");

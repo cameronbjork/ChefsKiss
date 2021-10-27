@@ -3,11 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/custom_email_icon.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/custom_input.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/custom_lock_icon.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/ic_email.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/ic_email_focused.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
@@ -18,23 +18,8 @@
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_create_account.xml" value="0.21739130434782608" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_homepage.xml" value="0.375" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_main.xml" value="0.335" />
-=======
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/drawable/ic_launcher_background.xml" value="0.29128205128205126" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/drawable/ic_search.xml" value="0.29128205128205126" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/drawable/search_menu.xml" value="0.335" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_create_account.xml" value="0.335" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_homepage.xml" value="0.2796875" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_login.xml" value="0.2427536231884058" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_main.xml" value="0.2796875" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_search_result.xml" value="0.24682971014492755" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_search_results.xml" value="0.165" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_searchbar.xml" value="0.335" />
-        <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/menu/search_menu.xml" value="0.335" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14814814814814814" />
->>>>>>> f712e72eb0ffbb98b671dfccc848c540264c065a
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.153125" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.27471772143005246" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/create_account_layout.xml" value="0.15989583333333332" />
       </map>

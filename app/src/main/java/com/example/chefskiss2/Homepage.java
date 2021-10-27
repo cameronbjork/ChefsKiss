@@ -1,14 +1,12 @@
 package com.example.chefskiss2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Homepage extends AppCompatActivity {
 
@@ -21,8 +19,9 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        ImageButton recipesButton = (ImageButton) findViewById(R.id.imageButton3);
+        Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
+        ImageButton recipesButton = (ImageButton) findViewById(R.id.imageButton3);
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +35,7 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Homepage.this, AccountInfoPage.class);
+                intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,6 @@
 package com.example.chefskiss2;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ public class LoginAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
@@ -27,12 +27,11 @@ public class LoginAccount extends AppCompatActivity {
         Button loginAccount = (Button) findViewById(R.id.loginBtn);
 
         loginAccount.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
-
-                DatabaseHelper databaseHelper = new DatabaseHelper(LoginAccount.this);
-
+                Account acct = new Account(usernameString, passwordString);
+                databaseHelper.login(acct);
                 try {
 
                     if (passwordString.equals(password.toString())) {
@@ -41,7 +40,7 @@ public class LoginAccount extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-                    errorMessage.setText("*Invalid Username");
+                    errorMessage.setText(R.string.invalidusername);
                 }
             }
         });

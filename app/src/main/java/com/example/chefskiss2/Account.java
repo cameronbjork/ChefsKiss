@@ -1,16 +1,20 @@
 package com.example.chefskiss2;
 
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private String username;
     private String email;
     private String password;
+    private boolean loginStatus;
 
     public Account(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
+
 
     public Account(String username, String password) {
         this.username = username;
@@ -28,4 +32,13 @@ public class Account {
     public String getPassword() {
         return this.password;
     }
+
+    public boolean getLoginStatus() {
+        return this.loginStatus;
+    }
+
+    public void setLoginStatus(boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
 }

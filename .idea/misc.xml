@@ -14,7 +14,10 @@
         <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_search_results.xml" value="0.165" />
         <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/layout/activity_searchbar.xml" value="0.335" />
         <entry key="..\:/Users/Mmontalvo001/AndroidStudioProjects/chefskiss/app/src/main/res/menu/search_menu.xml" value="0.335" />
+        <entry key="app/src/main/res/drawable/custom_lock_icon.xml" value="0.14074074074074075" />
+        <entry key="app/src/main/res/drawable/ic_email_focused.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14814814814814814" />
+        <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/layout/activity_account_info_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.153125" />

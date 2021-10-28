@@ -109,7 +109,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("EMAILTEXT", newAccount.getEmail());
 
 
-
         long result = db.update(USER_TABLE, cv, "USERNAMETEXT=?", new String[]{oldAccount.getUsername()});
 
         if (result == -1) {
@@ -117,24 +116,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
-
-
     }
 
-    //this is called if the user decides to delete their account
-    public boolean deleteOne(Account account) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        //this is called if the user decides to delete their account
+        public boolean deleteOne (Account account){
 
-        long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?", new String[]{account.getUsername()});
-        db.close();
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        if (delete == -1) {
-            return false;
-        } else {
-            return true;
+            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?", new String[]{account.getUsername()});
+            db.close();
+
+            if (delete == -1) {
+                return false;
+            } else {
+                return true;
+            }
         }
-    }
 
     public Account login(Account account) {
         ArrayList<Account> allUsers = this.getAllUsers();

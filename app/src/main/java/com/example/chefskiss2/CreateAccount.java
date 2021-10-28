@@ -34,6 +34,7 @@ public class CreateAccount extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String emailString = email.getText().toString();
                 String usernameString = username.getText().toString();
                 String passwordString = password.getText().toString();
@@ -59,7 +60,6 @@ public class CreateAccount extends AppCompatActivity {
                         //saveUser(emailString, usernameString, passwordString);
                         Account account = new Account(usernameString, emailString, passwordString);
                         CreateAccount.this.AC = new AccountController(account);
-
 
                         if(databaseHelper.addOne(account)) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);

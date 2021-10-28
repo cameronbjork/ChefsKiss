@@ -4,40 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
-        android:id="@+id/createAccountBtn2"
+        android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="33dp"
-        android:text="@string/create_account" />
-
-    <EditText
-        android:id="@+id/userEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="93dp"
-        android:autofillHints="testHint"
-        android:ems="10"
-        android:hint="@string/email"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="36dp"
+        android:onClick="login"
+        android:text="@string/log_in"
+        android:textColor="#212121" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userEmail"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="163dp"
         android:autofillHints="testHint"
         android:ems="10"
         android:hint="@string/username"
@@ -60,17 +47,4 @@
         android:minHeight="48dp"
         tools:ignore="TextContrastCheck,TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/invalidInfoMessage"
-        android:layout_width="166dp"
-        android:layout_height="85dp"
-        android:layout_below="@+id/createAccountBtn2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="155dp"
-        android:text="@string/password_must_contain_n_uppercase_letter_n_lowercase_letter_n_number_n_special_character"
-        android:textColor="@color/orange_soda" />
 </RelativeLayout>

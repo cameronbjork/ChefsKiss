@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChefsKiss">
         <activity
+            android:name=".SavedRecipes"
+            android:exported="false"
+            android:label="@string/title_activity_saved_recipes"
+            android:theme="@style/Theme.ChefsKiss.NoActionBar" />
+        <activity
             android:name=".IndividualRecipePage"
             android:exported="false" />
         <activity

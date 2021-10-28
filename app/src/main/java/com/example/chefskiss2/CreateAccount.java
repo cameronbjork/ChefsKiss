@@ -17,7 +17,6 @@ public class CreateAccount extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
@@ -26,20 +25,20 @@ public class CreateAccount extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.password);
         TextView errorMessage = (TextView) findViewById(R.id.invalidInfoMessage);
 
+        String emailString = email.getText().toString();
+        String usernameString = username.getText().toString();
+        String passwordString = password.getText().toString();
+
         Button createAccount = (Button) findViewById(R.id.createAccountBtn2);
-        AccountController AC = new AccountController();
+
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailString = email.getText().toString();
-                String usernameString = username.getText().toString();
-                String passwordString = password.getText().toString();
+
 
                 //*** Add later if username is already taken once DB is implemented
                 if (emailString.contains("@") && emailString.endsWith(".com")) {
-                    AC.createAccount(emailString, usernameString, passwordString);
-                    CreateAccount.this.AC = AC;
 
                     //Used to check a password contains uppercase, lowercase,
                     // has a special character, and a number
@@ -56,6 +55,10 @@ public class CreateAccount extends AppCompatActivity {
 
                     //Checks if the password matches
                     if(m.matches()) {
+                        Account account = new Account(usernameString, emailString, passwordString);
+                        CreateAccount.this.AC = new AccountController(account);
+                        DatabaseHelper databaseHelper = new DatabaseHelper(CreateAccount.this);
+                        databaseHelper.addOne(account);
 
                         //If account is stored in AC
                         if (CreateAccount.this.AC.isLoggedIn()) {

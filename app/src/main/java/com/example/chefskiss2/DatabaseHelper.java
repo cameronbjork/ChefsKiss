@@ -124,7 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             SQLiteDatabase db = this.getWritableDatabase();
 
-            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?", new String[]{account.getUsername()});
+            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?",
+                    new String[]{account.getUsername()});
             db.close();
 
             if (delete == -1) {

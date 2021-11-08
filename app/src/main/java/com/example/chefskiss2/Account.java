@@ -41,4 +41,10 @@ public class Account implements Serializable {
         this.loginStatus = loginStatus;
     }
 
+    public boolean isNull() {
+        if (this.username.isEmpty())
+            return true;
+        return false;
+    }
+
 }

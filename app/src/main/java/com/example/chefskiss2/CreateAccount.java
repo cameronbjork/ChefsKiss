@@ -13,8 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CreateAccount extends AppCompatActivity {
-    public AccountController AC;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +57,6 @@ public class CreateAccount extends AppCompatActivity {
                     if(m.matches()) {
                         //saveUser(emailString, usernameString, passwordString);
                         Account account = new Account(usernameString, emailString, passwordString);
-                        CreateAccount.this.AC = new AccountController(account);
 
                         if(databaseHelper.addOne(account)) {
                             Intent intent = new Intent(CreateAccount.this, Homepage.class);

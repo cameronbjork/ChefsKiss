@@ -17,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_ID = "_ID";
+    private int id = 0;
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -136,9 +137,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     public Account login(Account account) {
-        ArrayList<Account> allUsers = this.getAllUsers();
 
-        for (int i = 0; i < allUsers.size(); i++) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + "WHERE " + account.getUsername() + " = COLUMN_USERNAME",null);
+        if (cursor.moveToFirst()) {
+            int custId = cursor.getInt(0);
+            String custUname = cursor.getString(2);
+            this.id = custId;
+            String custPassword = cursor.getString(3);
+            if (custUname.equals(account.getUsername()) && custPassword.equals(account.getPassword())) {
+                account.setLoginStatus(true);
+            } else {
+                account.setLoginStatus(false);
+            }
+
+        //ArrayList<Account> allUsers = this.getAllUsers();
+
+        /*for (int i = 0; i < allUsers.size(); i++) {
             if(allUsers.get(i).getUsername().equals(account.getUsername())) {
                 if (allUsers.get(i).getPassword().equals(account.getPassword())) {
                     allUsers.get(i).setLoginStatus(true);
@@ -148,11 +163,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     return allUsers.get(i);
                 }
             }
+         */
         }
         return null;
     }
 
     public Cursor rawQuery(String s, String[] strings) {
         return null ;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

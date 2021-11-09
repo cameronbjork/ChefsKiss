@@ -2,6 +2,7 @@ package com.example.chefskiss2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,15 @@ public class LoginAccount extends AppCompatActivity {
         TextView errorMessage = (TextView) findViewById(R.id.invalidInfoMessage);
 
         Button loginAccount = (Button) findViewById(R.id.loginBtn);
+        Button forgotPassword = (Button) findViewById(R.id.forgotPass);
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginAccount.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
         loginAccount.setOnClickListener(new View.OnClickListener() {
 
             @Override

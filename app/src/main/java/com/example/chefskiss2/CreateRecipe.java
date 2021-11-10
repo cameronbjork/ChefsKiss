@@ -1,5 +1,6 @@
 package com.example.chefskiss2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,12 @@ public class CreateRecipe extends AppCompatActivity{
 
                 //*** Checking if the description is less than
                 if (description.length() < 280) {
+                    Recipe recipe = new Recipe(title, description, ingredients);
+                    boolean result = databaseHelper.addOne(recipe);
+                        databaseHelper.close();
+                        Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+                        intent.putExtra("account", account);
+                        startActivity(intent);
 
                 }
             }

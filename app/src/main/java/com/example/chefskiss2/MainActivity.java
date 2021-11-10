@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //AccountInfo Button
         Button accInfoBtn = (Button) findViewById(R.id.buttontoaccinfo);
 

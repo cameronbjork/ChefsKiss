@@ -39,5 +39,15 @@ public class Homepage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button signOut = (Button) findViewById(R.id.signOutBtn);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Homepage.this, MainActivity.class);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
     }
 }

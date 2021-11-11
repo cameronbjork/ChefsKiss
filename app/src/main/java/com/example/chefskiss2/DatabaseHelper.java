@@ -17,7 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_ID = "_ID";
-    private int id = 0;
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -143,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
             String custUname = cursor.getString(2);
-            this.id = custId;
+            account.setId(custId);
             String custPassword = cursor.getString(3);
             if (custUname.equals(account.getUsername()) && custPassword.equals(account.getPassword())) {
                 account.setLoginStatus(true);
@@ -170,9 +169,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor rawQuery(String s, String[] strings) {
         return null ;
-    }
-
-    public int getId() {
-        return this.id;
     }
 }

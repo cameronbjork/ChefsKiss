@@ -17,7 +17,6 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_INGREDIENTS = "ingredients";
     public static final String COLUMN_DIRECTIONS = "directions";
-    public int id = 0;
 
 
     public RecipeDatabaseHelper(@Nullable Context context) {
@@ -27,7 +26,6 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     //called the first time a database is accessed. Creates a new database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //this.id = DatabaseHelper.getId();
         String createTableStatement = "CREATE TABLE IF NOT EXISTS " + RECIPE_TABLE + " (" +
                 DatabaseHelper.COLUMN_ID + COLUMN_TITLE + " TEXT, " + COLUMN_PHOTO
                 + "BLOB, " + COLUMN_INGREDIENTS + " TEXT, " + COLUMN_DIRECTIONS + "TEXT)";

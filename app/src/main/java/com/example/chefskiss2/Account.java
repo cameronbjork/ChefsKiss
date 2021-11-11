@@ -4,11 +4,11 @@ package com.example.chefskiss2;
 import java.io.Serializable;
 
 public class Account implements Serializable {
+    private static int ACCOUNT_ID;
     private String username;
     private String email;
     private String password;
     private boolean loginStatus;
-    public int ACCOUNT_ID = 0;
 
     public Account(String username, String email, String password) {
         this.username = username;
@@ -46,6 +46,10 @@ public class Account implements Serializable {
         if (this.username.isEmpty())
             return true;
         return false;
+    }
+
+    public static int getId() {
+        return ACCOUNT_ID;
     }
 
 }

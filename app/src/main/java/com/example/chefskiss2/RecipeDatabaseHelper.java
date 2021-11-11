@@ -15,6 +15,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     public static final String RECIPE_TABLE = "recipe_table";
     public static final String COLUMN_PHOTO = "photo";
     public static final String COLUMN_TITLE = "title";
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_INGREDIENTS = "ingredients";
     public static final String COLUMN_DIRECTIONS = "directions";
 
@@ -27,7 +28,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE IF NOT EXISTS " + RECIPE_TABLE + " (" +
-                DatabaseHelper.COLUMN_ID + COLUMN_TITLE + " TEXT, " + COLUMN_PHOTO
+                COLUMN_ID + " INT, " + COLUMN_TITLE + " TEXT, " + COLUMN_PHOTO
                 + "BLOB, " + COLUMN_INGREDIENTS + " TEXT, " + COLUMN_DIRECTIONS + "TEXT)";
 
         db.execSQL(createTableStatement);
@@ -57,7 +58,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         }
 
         ContentValues cv = new ContentValues();
-        //cv.put(COLUMN_EMAIL +"TEXT", account.getEmail()); --need to find a way to add account id to database
+        cv.put(COLUMN_ID +"INT", Account.getId()); 
         cv.put(COLUMN_TITLE+"TEXT", recipe.getTitle());
         cv.put(COLUMN_INGREDIENTS+"TEXT", recipe.getIngredients());
         cv.put(COLUMN_DIRECTIONS + "TEXT", recipe.getDirections());
@@ -90,7 +91,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
                 String directions = cursor.getString(tempCurs);
 
 
-                Recipe temp = new Recipe(title, ingredients, directions);
+                Recipe temp = new Recipe(Account.getId(), title, ingredients, directions);
                 recipeList.add(temp);
 
                 cursor.moveToNext();
@@ -104,9 +105,10 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put("TITLETEXT", newRecipe.getTitle());
-        cv.put("INGREDIENTSTEXT", newRecipe.getIngredients());
-        cv.put("DIRECTIONSTEXT", newRecipe.getDirections());
+        cv.put(COLUMN_ID + "INT", Account.getId());
+        cv.put(COLUMN_TITLE + "TEXT", newRecipe.getTitle());
+        cv.put(COLUMN_INGREDIENTS + "TEXT", newRecipe.getIngredients());
+        cv.put(COLUMN_DIRECTIONS + "TEXT", newRecipe.getDirections());
 
 
         long result = db.update(RECIPE_TABLE, cv, "TITLETEXT=?", new String[]{oldRecipe.getTitle()});

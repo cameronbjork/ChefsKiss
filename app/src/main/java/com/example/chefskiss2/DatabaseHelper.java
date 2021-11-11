@@ -138,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Account login(Account account) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + "WHERE " + account.getUsername() + " = COLUMN_USERNAME",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE USERNAMETEXT =?",new String[]{account.getUsername()});
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
             String custUname = cursor.getString(2);
@@ -146,8 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String custPassword = cursor.getString(3);
             if (custUname.equals(account.getUsername()) && custPassword.equals(account.getPassword())) {
                 account.setLoginStatus(true);
+                return account;
             } else {
                 account.setLoginStatus(false);
+                return account;
             }
 
         //ArrayList<Account> allUsers = this.getAllUsers();

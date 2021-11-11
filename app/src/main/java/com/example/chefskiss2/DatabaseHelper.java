@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long result = db.update(USER_TABLE, cv, "USERNAMETEXT=?", new String[]{oldAccount.getUsername()});
 
-        if (result == -1) {
+        if (result < 1) {
             return false;
         } else {
             return true;
@@ -128,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     new String[]{account.getUsername()});
             db.close();
 
-            if (delete == -1) {
+            if (delete < 1) {
                 return false;
             } else {
                 return true;

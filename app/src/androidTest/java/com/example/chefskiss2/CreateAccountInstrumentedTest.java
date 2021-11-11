@@ -49,10 +49,6 @@ public class CreateAccountInstrumentedTest {
 
             //Clicks create account button and adds to DB
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
         });
 
     }
@@ -77,28 +73,16 @@ public class CreateAccountInstrumentedTest {
             //Check for null value
             email.setText("");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("*Invalid Email Address", errorMessage.getText().toString());
 
             //Check for email with only an @
             email.setText("@");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("*Invalid Email Address", errorMessage.getText().toString());
 
             //Check for email with only .com
             email.setText(".com");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("*Invalid Email Address", errorMessage.getText().toString());
 
         });
@@ -121,46 +105,26 @@ public class CreateAccountInstrumentedTest {
             //Check for null value
             password.setText("");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)", errorMessage.getText().toString());
 
             //Check for password with only a capital Letter
             password.setText("C");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)", errorMessage.getText().toString());
 
             //Check for password with uppercase and lowercase letter
             password.setText("Cam");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)", errorMessage.getText().toString());
 
             //Check for password with uppercase letter, lowercase letter, and number
             password.setText("Cam1");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)", errorMessage.getText().toString());
 
             //Check for password with uppercase letter, lowercase letter, number, and special character
             password.setText("Cam1!");
             createAccountBtn.performClick();
-            createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
             assertEquals("Username already taken", errorMessage.getText().toString());
         });
     }
@@ -184,9 +148,6 @@ public class CreateAccountInstrumentedTest {
             username.setText("testing");
 
             createAccountBtn.setPressed(true);
-            createAccountBtn.invalidate();
-            createAccountBtn.setPressed(false);
-            createAccountBtn.invalidate();
 
             assertEquals("Username already taken", errorMessage.getText().toString());
 

@@ -44,11 +44,11 @@ public class LoginAccount extends AppCompatActivity {
 
                 Account result = databaseHelper.login(acct);
 
-                if (result.getLoginStatus() == true) {
+                if (result != null && result.getLoginStatus() == true) {
                     Intent intent = new Intent(LoginAccount.this, Homepage.class);
                     intent.putExtra("account", result);
                     startActivity(intent);
-                } else if (result.getLoginStatus() == false) {
+                } else if (result != null && result.getLoginStatus() == false) {
                     Toast.makeText(LoginAccount.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginAccount.this, "Invalid Username", Toast.LENGTH_SHORT).show();

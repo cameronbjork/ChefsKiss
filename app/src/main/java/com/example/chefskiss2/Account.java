@@ -42,5 +42,10 @@ public class Account implements Serializable {
     }
 
     public void setId(int newId) { this.ACCOUNT_ID = newId; }
+    public boolean isNull() {
+        if (this.username.isEmpty())
+            return true;
+        return false;
+    }
 
 }

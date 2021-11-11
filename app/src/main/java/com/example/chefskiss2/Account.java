@@ -8,13 +8,13 @@ public class Account implements Serializable {
     private String email;
     private String password;
     private boolean loginStatus;
+    public int ACCOUNT_ID = 0;
 
     public Account(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
-
 
     public Account(String username, String password) {
         this.username = username;
@@ -41,6 +41,7 @@ public class Account implements Serializable {
         this.loginStatus = loginStatus;
     }
 
+    public void setId(int newId) { this.ACCOUNT_ID = newId; }
     public boolean isNull() {
         if (this.username.isEmpty())
             return true;

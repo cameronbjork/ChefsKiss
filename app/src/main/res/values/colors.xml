@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange_soda">#F95738</color>
     <color name="sandy_brown">#EE964B</color>
+    <color name="light_grey">#989797</color>
+    <color name="underline">#D8D6D6</color>
 </resources>

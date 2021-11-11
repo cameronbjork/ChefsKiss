@@ -36,7 +36,8 @@
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp" />
+        android:paddingEnd="12dp"
+        android:layout_width="30dp"/>
 
     <EditText
         android:id="@+id/username"

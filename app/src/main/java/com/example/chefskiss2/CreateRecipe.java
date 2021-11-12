@@ -16,7 +16,7 @@ public class CreateRecipe extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        RecipeDatabaseHelper recipedatabasehelper = new RecipeDatabaseHelper(this);
 
         //initialized
         EditText title = (EditText) findViewById(R.id.editTextTitle);
@@ -26,28 +26,34 @@ public class CreateRecipe extends AppCompatActivity{
 
         Button createRecipe = (Button) findViewById(R.id.createRecipe);
 
+        Button cancel = (Button) findViewById(R.id.cancelButton);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+                startActivity(intent);
+            }
+        });
+
 
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String title = title.getText().toString();
-                String description = description.getText().toString();
-                String ingredients = ingredients.getText().toString();
+                String titleString = title.getText().toString();
+                String descriptionString = description.getText().toString();
+                String ingredientsString = ingredients.getText().toString();
 
-                //*** Checking if the description is less than
-                if (description.length() < 280) {
-                    Recipe recipe = new Recipe(title, description, ingredients);
-                    boolean result = databaseHelper.addOne(recipe);
-                        databaseHelper.close();
+                //*** Checking if the description is greater than 1000 characters
+                if (description.length() < 1000) {
+                    Recipe recipe = new Recipe(titleString, ingredientsString, descriptionString);
+                    RecipeDatabaseHelper.addOne(recipe);
+                    RecipeDatabaseHelper.close();
                         Intent intent = new Intent(CreateRecipe.this, Homepage.class);
-                        intent.putExtra("account", account);
-                        startActivity(intent);
+                        intent.putExtra("Recipe", recipe);
+                        startActivity(intent);}
 
                 }
-            }
-        });
+            });
+        };
     }
-
-
-}

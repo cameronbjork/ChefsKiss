@@ -7,10 +7,11 @@ public class Recipe implements Serializable {
     private String title;
     private String ingredients;
     private String directions;
-    private String id;
+    private int id;
 
 
-    public Recipe(String title, String ingredients, String directions) {
+    public Recipe(int id, String title, String ingredients, String directions) {
+        this.id = id;
         this.title = title;
         this.ingredients = ingredients;
         this.directions = directions;

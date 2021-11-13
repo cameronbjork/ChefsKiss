@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String createTableStatement = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + " (" + COLUMN_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USERNAME
-                + "TEXT, " + COLUMN_PASSWORD + " TEXT)";
+                + " TEXT, " + COLUMN_PASSWORD + " TEXT)";
 
         db.execSQL(createTableStatement);
     }

@@ -51,10 +51,10 @@ public class CreateAccount extends AppCompatActivity {
                 //Checks if password matches values
                 Matcher m = p.matcher(passwordString);
 
-                //Checks if the password matches
+                Account account = new Account(usernameString, emailString, passwordString);
+                boolean result = databaseHelper.addOne(account);
+                //Checks if the password and username are valid
                 if(m.matches()) {
-                    Account account = new Account(usernameString, emailString, passwordString);
-                    boolean result = databaseHelper.addOne(account);
                     if(result) {
                         databaseHelper.close();
                         Intent intent = new Intent(CreateAccount.this, Homepage.class);

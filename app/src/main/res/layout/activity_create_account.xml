@@ -36,7 +36,7 @@
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"/>
+        android:paddingEnd="12dp" />
 
     <EditText
         android:id="@+id/username"

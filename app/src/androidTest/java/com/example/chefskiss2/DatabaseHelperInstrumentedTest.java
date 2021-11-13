@@ -44,7 +44,7 @@ public class DatabaseHelperInstrumentedTest {
             db.close();
 
             boolean result = false;
-            if (all.size() > 1) {
+            if (all.size() > 0) {
                 result = true;
             }
             assertTrue(result);

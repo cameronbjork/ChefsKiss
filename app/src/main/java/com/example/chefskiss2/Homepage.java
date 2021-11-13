@@ -25,7 +25,9 @@ public class Homepage extends AppCompatActivity {
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(Homepage.this, CreateRecipe.class);
+                intent.putExtra("account", loggedInAcct);
+                startActivity(intent);
             }
         });
 

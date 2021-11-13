@@ -93,6 +93,7 @@ public class CreateAccountInstrumentedTest {
         scenario.onActivity(activity -> {
             EditText password = activity.findViewById(R.id.password);
             EditText email = activity.findViewById(R.id.userEmail);
+            EditText username = activity.findViewById(R.id.username);
 
             email.setText("@.com");
 
@@ -123,6 +124,7 @@ public class CreateAccountInstrumentedTest {
             assertEquals("Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)", errorMessage.getText().toString());
 
             //Check for password with uppercase letter, lowercase letter, number, and special character
+            username.setText("testing");
             password.setText("Cam1!");
             createAccountBtn.performClick();
             assertEquals("Username already taken", errorMessage.getText().toString());
@@ -147,7 +149,7 @@ public class CreateAccountInstrumentedTest {
             password.setText("Test1!");
             username.setText("testing");
 
-            createAccountBtn.setPressed(true);
+            createAccountBtn.performClick();
 
             assertEquals("Username already taken", errorMessage.getText().toString());
 

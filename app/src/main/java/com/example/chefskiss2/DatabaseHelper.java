@@ -41,8 +41,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE " + USER_TABLE);
         onCreate(db);
+    }
 
-
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.setVersion(oldVersion);
     }
 
     public boolean addOne(Account account) {
@@ -52,15 +55,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Account> allAccounts = this.getAllUsers();
 
         for (int i=0; i < allAccounts.size(); i++) {
-            if (allAccounts.get(i).getUsername().contains(account.getUsername())) {
+            if (account.getUsername() == null || allAccounts.get(i).getUsername().equals(account.getUsername())) {
                 return false;
             }
         }
 
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_EMAIL +"TEXT", account.getEmail());
-        cv.put(COLUMN_USERNAME+"TEXT", account.getUsername());
-        cv.put(COLUMN_PASSWORD+"TEXT", account.getPassword());
+        cv.put(COLUMN_EMAIL, account.getEmail());
+        cv.put(COLUMN_USERNAME, account.getUsername());
+        cv.put(COLUMN_PASSWORD, account.getPassword());
 
         long insert = db.insert(USER_TABLE, null, cv);
         db.close();
@@ -80,17 +83,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                int tempCurs = cursor.getColumnIndex("USERNAMETEXT");
+                int tempCurs = cursor.getColumnIndex(COLUMN_USERNAME);
                 String username = cursor.getString(tempCurs);
 
-                tempCurs = cursor.getColumnIndex("EMAILTEXT");
+                tempCurs = cursor.getColumnIndex(COLUMN_ID);
+                int id = cursor.getInt(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_EMAIL);
                 String email = cursor.getString(tempCurs);
 
-                tempCurs = cursor.getColumnIndex("PASSWORDTEXT");
+                tempCurs = cursor.getColumnIndex(COLUMN_PASSWORD);
                 String password = cursor.getString(tempCurs);
 
 
                 Account temp = new Account(username, email, password);
+                temp.setId(id);
                 accountList.add(temp);
 
                 cursor.moveToNext();
@@ -104,12 +111,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put("USERNAMETEXT", newAccount.getUsername());
-        cv.put("PASSWORDTEXT", newAccount.getPassword());
-        cv.put("EMAILTEXT", newAccount.getEmail());
+        cv.put(COLUMN_USERNAME, newAccount.getUsername());
+        cv.put(COLUMN_PASSWORD, newAccount.getPassword());
+        cv.put(COLUMN_EMAIL, newAccount.getEmail());
 
 
-        long result = db.update(USER_TABLE, cv, "USERNAMETEXT=?", new String[]{oldAccount.getUsername()});
+        long result = db.update(USER_TABLE, cv, COLUMN_USERNAME + "=?", new String[]{oldAccount.getUsername()});
 
         if (result < 1) {
             return false;
@@ -124,7 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             SQLiteDatabase db = this.getWritableDatabase();
 
-            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?",
+            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + " = ?",
                     new String[]{account.getUsername()});
             db.close();
 
@@ -138,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Account login(Account account) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE USERNAMETEXT =?",new String[]{account.getUsername()});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE "+ COLUMN_USERNAME + " = ?",new String[]{account.getUsername()});
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
             String custUname = cursor.getString(2);

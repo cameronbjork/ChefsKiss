@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="163dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="105dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="105dp"
+        android:background="@drawable/round_btn"
         android:onClick="login"
-        android:text="@string/log_in"
-        android:textColor="#212121" />
+        android:text="@string/log_in" />
 
     <EditText
         android:id="@+id/username"
@@ -29,6 +30,7 @@
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_person_icon"
         android:drawablePadding="12dp"
+        android:paddingStart="12dp"
         android:ems="10"
         android:hint="@string/username"
         android:importantForAutofill="no"
@@ -46,6 +48,7 @@
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_lock_icon"
         android:drawablePadding="12dp"
+        android:paddingStart="12dp"
         android:ems="10"
         android:hint="@string/password"
         android:importantForAutofill="no"
@@ -57,11 +60,15 @@
         android:id="@+id/forgotPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/loginBtn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="105dp"
         android:layout_marginBottom="182dp"
-        android:text="Forgot Password"
-        android:textColor="#212121" />
+        android:background="@drawable/round_btn"
+        android:text="Forgot Password" />
 
 </RelativeLayout>

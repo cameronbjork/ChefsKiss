@@ -26,7 +26,7 @@ public class ForgotPasswordInstrumentedTest {
 
     @Test
     public void correctEmailTest() {
-        
+
     }
 
 }

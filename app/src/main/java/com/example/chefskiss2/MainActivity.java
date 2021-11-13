@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //AccountInfo Button
-        Button accInfoBtn = (Button) findViewById(R.id.buttontoaccinfo);
+        //Button accInfoBtn = (Button) findViewById(R.id.buttontoaccinfo);
 
 
         Button loginBtn = (Button) findViewById(R.id.loginAccountBtn);

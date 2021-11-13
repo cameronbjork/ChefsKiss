@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppbar"
                 android:layout_width="match_parent"
@@ -38,6 +39,7 @@
 
     </RelativeLayout>
 
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
@@ -45,5 +47,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/my_navigation_items"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

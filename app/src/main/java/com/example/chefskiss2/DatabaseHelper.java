@@ -17,10 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
     public static final String COLUMN_ID = "_ID";
+    public static final String COLUMN_SAVEDRECIPES = "saved_recipes";
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "chefsKiss.db", null, 1);
+        super(context, "chefsKiss.db", null, 3);
     }
 
     //called the first time a database is accessed. Creates a new database
@@ -29,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String createTableStatement = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + " (" + COLUMN_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USERNAME
-                + "TEXT, " + COLUMN_PASSWORD + " TEXT)";
+                + " TEXT, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_SAVEDRECIPES + " TEXT)";
 
         db.execSQL(createTableStatement);
     }
@@ -46,21 +47,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addOne(Account account) {
-
         SQLiteDatabase db = this.getWritableDatabase();
 
         ArrayList<Account> allAccounts = this.getAllUsers();
 
-        for (int i=0; i < allAccounts.size(); i++) {
-            if (allAccounts.get(i).getUsername().contains(account.getUsername())) {
-                return false;
+        if (allAccounts != null) {
+            for (int i = 0; i < allAccounts.size(); i++) {
+                if (allAccounts.get(i).getUsername() == null) {
+                    return false;
+                } else {
+                    if (allAccounts.get(i).getUsername().contains(account.getUsername())) {
+                        return false;
+                    }
+                }
+                }
             }
-        }
 
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_EMAIL +"TEXT", account.getEmail());
-        cv.put(COLUMN_USERNAME+"TEXT", account.getUsername());
-        cv.put(COLUMN_PASSWORD+"TEXT", account.getPassword());
+        cv.put(COLUMN_EMAIL, account.getEmail());
+        cv.put(COLUMN_USERNAME, account.getUsername());
+        cv.put(COLUMN_PASSWORD, account.getPassword());
+        cv.put(COLUMN_SAVEDRECIPES, "\n");
 
         long insert = db.insert(USER_TABLE, null, cv);
         db.close();
@@ -72,6 +79,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean addRecipe(Account account, Recipe recipe) {
+        SQLiteDatabase dbRead = this.getReadableDatabase();
+        SQLiteDatabase dbWrite = this.getWritableDatabase();
+
+        Cursor cursor = dbRead.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE " + COLUMN_USERNAME + "=?",new String[]{account.getUsername()});
+
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_SAVEDRECIPES, "\n" + recipe.getID());
+
+        long insert = dbWrite.update(USER_TABLE, cv, COLUMN_USERNAME + " = ?",
+                new String[]{account.getUsername()});
+
+        dbRead.close();
+        dbWrite.close();
+
+        if (insert == -1) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
     public ArrayList<Account> getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + USER_TABLE, null);
@@ -80,23 +110,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                int tempCurs = cursor.getColumnIndex("USERNAMETEXT");
+                int tempCurs = cursor.getColumnIndex(COLUMN_USERNAME);
                 String username = cursor.getString(tempCurs);
 
-                tempCurs = cursor.getColumnIndex("EMAILTEXT");
+                tempCurs = cursor.getColumnIndex(COLUMN_EMAIL);
                 String email = cursor.getString(tempCurs);
 
-                tempCurs = cursor.getColumnIndex("PASSWORDTEXT");
+                tempCurs = cursor.getColumnIndex(COLUMN_PASSWORD);
                 String password = cursor.getString(tempCurs);
 
+                //Add a method that returns arraylist of recipes based on ID
+                tempCurs = cursor.getColumnIndex(COLUMN_SAVEDRECIPES);
+                String savedRecipes = cursor.getString(tempCurs);
 
-                Account temp = new Account(username, email, password);
+                //Get all the ID's
+                String[] ids = savedRecipes.split("\n");
+                Account temp = new Account(username, email, password, ids);
+
                 accountList.add(temp);
+
 
                 cursor.moveToNext();
             }
         }
-        
+        db.close();
         return accountList;
     }
 
@@ -104,12 +141,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put("USERNAMETEXT", newAccount.getUsername());
-        cv.put("PASSWORDTEXT", newAccount.getPassword());
-        cv.put("EMAILTEXT", newAccount.getEmail());
+        cv.put(COLUMN_USERNAME, newAccount.getUsername());
+        cv.put(COLUMN_PASSWORD, newAccount.getPassword());
+        cv.put(COLUMN_EMAIL, newAccount.getEmail());
 
 
-        long result = db.update(USER_TABLE, cv, "USERNAMETEXT=?", new String[]{oldAccount.getUsername()});
+        long result = db.update(USER_TABLE, cv, COLUMN_USERNAME + " = ?", new String[]{oldAccount.getUsername()});
+        db.close();
 
         if (result < 1) {
             return false;
@@ -124,7 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             SQLiteDatabase db = this.getWritableDatabase();
 
-            long delete = db.delete(USER_TABLE, COLUMN_USERNAME + "TEXT = ?",
+            int delete = db.delete(USER_TABLE, COLUMN_USERNAME + " = ?",
                     new String[]{account.getUsername()});
             db.close();
 
@@ -138,7 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Account login(Account account) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE USERNAMETEXT =?",new String[]{account.getUsername()});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE "+ COLUMN_USERNAME + "=?",new String[]{account.getUsername()});
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
             String custUname = cursor.getString(2);
@@ -151,20 +189,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 account.setLoginStatus(false);
                 return account;
             }
-
-        //ArrayList<Account> allUsers = this.getAllUsers();
-
-        /*for (int i = 0; i < allUsers.size(); i++) {
-            if(allUsers.get(i).getUsername().equals(account.getUsername())) {
-                if (allUsers.get(i).getPassword().equals(account.getPassword())) {
-                    allUsers.get(i).setLoginStatus(true);
-                    return allUsers.get(i);
-                } else {
-                    allUsers.get(i).setLoginStatus(false);
-                    return allUsers.get(i);
-                }
-            }
-         */
         }
         return null;
     }

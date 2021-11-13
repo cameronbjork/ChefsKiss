@@ -89,6 +89,22 @@ public class DatabaseHelperInstrumentedTest {
     }
 
     @Test
+    public void testAddRecipe() {
+        scenario.onActivity(activity -> {
+           DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
+           RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(activity.getApplicationContext());
+           Recipe recipe = new Recipe("Title","Ingredients", "Directions");
+           recipe = rdb.addOne(recipe);
+
+           assertTrue(db.addRecipe(acc, recipe));
+           rdb.deleteOne(recipe);
+           rdb.close();
+           db.close();
+
+        });
+    }
+
+    @Test
     public void testCorrectLogin() {
         scenario.onActivity(activity -> {
             DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
@@ -115,6 +131,7 @@ public class DatabaseHelperInstrumentedTest {
         scenario.onActivity(activity -> {
             DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
             assertTrue(db.deleteOne(acc));
+            db.close();
         });
     }
 
@@ -123,11 +140,17 @@ public class DatabaseHelperInstrumentedTest {
         scenario.onActivity(activity -> {
             DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
             assertFalse(db.deleteOne(new Account("_____", "_____")));
+            db.close();
         });
     }
 
     @After
     public void endTest() {
+        scenario.onActivity(activity -> {
+            DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
+            db.deleteOne(acc);
+            db.close();
+        });
         scenario.close();
     }
 

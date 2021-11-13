@@ -2,20 +2,33 @@ package com.example.chefskiss2;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Account implements Serializable {
-    private static int ACCOUNT_ID;
+    private int ACCOUNT_ID;
     private String username;
     private String email;
     private String password;
     private boolean loginStatus;
+    private String[] recipeList;
 
+
+    //Create Account Constructor
     public Account(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
+    //Constructor used after user adds first recipe
+    public Account(String username, String email, String password, String[] recipelist) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.recipeList = recipelist;
+    }
+
+    //Login Account constructor
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
@@ -42,13 +55,14 @@ public class Account implements Serializable {
     }
 
     public void setId(int newId) { this.ACCOUNT_ID = newId; }
+
     public boolean isNull() {
         if (this.username.isEmpty())
             return true;
         return false;
     }
 
-    public static int getId() {
+    public int getId() {
         return ACCOUNT_ID;
     }
 

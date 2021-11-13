@@ -21,6 +21,9 @@ public class Homepage extends AppCompatActivity {
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
+        RecipeDatabaseHelper db = new RecipeDatabaseHelper(this);
+        db.close();
+
         ImageButton recipesButton = (ImageButton) findViewById(R.id.imageButton3);
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override

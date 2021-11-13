@@ -4,7 +4,7 @@ package com.example.chefskiss2;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-    private static int ACCOUNT_ID;
+    private int ACCOUNT_ID;
     private String username;
     private String email;
     private String password;
@@ -42,13 +42,14 @@ public class Account implements Serializable {
     }
 
     public void setId(int newId) { this.ACCOUNT_ID = newId; }
+
     public boolean isNull() {
         if (this.username.isEmpty())
             return true;
         return false;
     }
 
-    public static int getId() {
+    public int getId() {
         return ACCOUNT_ID;
     }
 

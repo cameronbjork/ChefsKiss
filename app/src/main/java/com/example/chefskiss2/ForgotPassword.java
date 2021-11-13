@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
         Button backToLogin = (Button) findViewById(R.id.backToLogin);
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        TextView errorMessage = findViewById(R.id.invalidInfoMessage2);
         //AccountController acctController = new AccountController(Account);
 
         Button confirm = (Button) findViewById(R.id.confirmBtn);
@@ -36,28 +38,26 @@ public class ForgotPassword extends AppCompatActivity {
 
                 ArrayList<Account> allUsers = databaseHelper.getAllUsers();
 
+                //getting all users to find the one that matches the given email
                 for (int i = 0; i < allUsers.size(); i++) {
                     if (allUsers.get(i).getEmail().equals(emailString)) {
                         Account user = allUsers.get(i);
                         if(newPasswordString.equals(confirmString)){
                             Account newAcc = new Account(user.getUsername(), emailString, newPasswordString);
                             databaseHelper.updateOne(user, newAcc);
+                            //returns user to login
+                            Intent intent2 = new Intent(ForgotPassword.this, LoginAccount.class);
+                            startActivity(intent2);
                         } else {
-                            //print error "passwords do not match"
+                            errorMessage.setText("Passwords do not match");
                         }
-
-
                     } else {
-                        //Need to print error message "no account with that email"
+                        errorMessage.setText("No account with that email");
                     }
 
                 }
-                //returns user to login
-                Intent intent2 = new Intent(ForgotPassword.this, LoginAccount.class);
-                startActivity(intent2);
 
-                //Intent intent = new Intent(ForgotPassword.this, LoginAccount.class);
-                //startActivity(intent);
+
             }
 
 

@@ -21,16 +21,16 @@ public class ForgotPassword extends AppCompatActivity {
         Button backToLogin = (Button) findViewById(R.id.backToLogin);
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         TextView errorMessage = findViewById(R.id.invalidInfoMessage2);
-        //AccountController acctController = new AccountController(Account);
+
+        EditText email = (EditText) findViewById(R.id.confirmEmail);
+        EditText newPass = (EditText) findViewById(R.id.newPass);
+        EditText confirmNewPass = (EditText) findViewById(R.id.confirmNewPass);
 
         Button confirm = (Button) findViewById(R.id.confirmBtn);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText email = (EditText) findViewById(R.id.confirmEmail);
-                EditText newPass = (EditText) findViewById(R.id.newPass);
-                EditText confirmNewPass = (EditText) findViewById(R.id.confirmNewPass);
 
                 String emailString = email.getText().toString();
                 String newPasswordString = newPass.getText().toString();

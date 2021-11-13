@@ -59,7 +59,9 @@ public class Homepage extends AppCompatActivity {
                         //Intent intent1 = new Intent()
                         break;
                     case R.id.nav_create_recipes:
-                        //Intent intent2 = new Intent(Homepage.this, CreateRecipe.class);
+                        Intent intent2 = new Intent(Homepage.this, CreateRecipe.class);
+                        intent2.putExtra("account", loggedInAcct);
+                        startActivity(intent2);
                         Toast.makeText(Homepage.this, "Create Recipes is Clicked",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_account:
                         Intent intent3 = new Intent(Homepage.this, AccountInfoPage.class);

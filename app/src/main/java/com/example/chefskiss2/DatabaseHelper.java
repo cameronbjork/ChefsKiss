@@ -176,12 +176,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public void killswitch() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(USER_TABLE, null, null);
-        db.close();
-    }
-
     public Cursor rawQuery(String s, String[] strings) {
         return null ;
     }

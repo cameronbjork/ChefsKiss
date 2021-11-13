@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "chefsKiss.db", null, 1);
+        super(context, "chefsKiss.db", null, 2);
     }
 
     //called the first time a database is accessed. Creates a new database
@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String createTableStatement = "CREATE TABLE IF NOT EXISTS " + USER_TABLE + " (" + COLUMN_ID +
                 " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_USERNAME
-                + "TEXT, " + COLUMN_PASSWORD + " TEXT)";
+                + " TEXT, " + COLUMN_PASSWORD + " TEXT)";
 
         db.execSQL(createTableStatement);
     }
@@ -174,6 +174,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          */
         }
         return null;
+    }
+
+    public void killswitch() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(USER_TABLE, null, null);
+        db.close();
     }
 
     public Cursor rawQuery(String s, String[] strings) {

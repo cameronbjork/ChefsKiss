@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,8 @@ public class Homepage extends AppCompatActivity {
             public void onClick(View v){
 
                 drawerLayout.openDrawer(GravityCompat.START);
+                TextView text = findViewById(R.id.nav_menu_name);
+                text.setText(loggedInAcct.getUsername());
 
             }
         });

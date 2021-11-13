@@ -6,17 +6,17 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/createRecipe"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="522dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/createRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteY="522dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextDescription"
         android:layout_width="348dp"
         android:layout_height="149dp"
         android:background="@drawable/custom_input"
@@ -41,20 +41,20 @@
         tools:layout_editor_absoluteY="203dp" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editTextIngredients"
         android:layout_width="348dp"
         android:layout_height="123dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Ingredience"
+        android:text="ingredients"
         android:textColor="#858585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
         app:layout_constraintVertical_bias="0.131" />
 
     <ImageButton
@@ -67,7 +67,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editTextTitle"
         android:layout_width="209dp"
         android:layout_height="39dp"
         android:background="@drawable/custom_input"

@@ -36,8 +36,7 @@
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:layout_width="30dp"/>
+        android:paddingEnd="12dp"/>
 
     <EditText
         android:id="@+id/username"
@@ -81,7 +80,7 @@
         android:minHeight="48dp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        tools:ignore="TextContrastCheck,TextContrastCheck" />
+ />
 
     <TextView
         android:id="@+id/invalidInfoMessage"

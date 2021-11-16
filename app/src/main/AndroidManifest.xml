@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="com.example.chefskiss2" >
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.chefskiss2">
 
@@ -22,6 +24,14 @@
         <activity
             android:name=".AccountInfoPage"
             android:exported="true" />
+        <activity
+            android:name=".SavedRecipes"
+            android:exported="false"
+            android:label="@string/title_activity_saved_recipes"
+            android:theme="@style/Theme.ChefsKiss.NoActionBar" />
+        <activity
+            android:name=".IndividualRecipePage"
+            android:exported="false" />
         <activity
             android:name=".Homepage"
             android:exported="true" />

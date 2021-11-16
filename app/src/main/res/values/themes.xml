@@ -15,6 +15,16 @@
         <!-- Customize your theme here. -->
     </style>
 
+<<<<<<< HEAD
+    <style name="Theme.ChefsKiss.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ChefsKiss.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ChefsKiss.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+=======
     <style name="line">
 
         <item name="android:background">@color/underline</item>
@@ -23,4 +33,5 @@
 
     </style>
 
+>>>>>>> 723a49119a5ad2464b99cbb7e3d375fd456418bc
 </resources>

@@ -32,6 +32,12 @@ public class MainActivityInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void testLoginBtn() {
         scenario.onActivity(activity -> {
             Instrumentation.ActivityMonitor am = getInstrumentation().addMonitor(LoginAccount.class.getName(), null, true);

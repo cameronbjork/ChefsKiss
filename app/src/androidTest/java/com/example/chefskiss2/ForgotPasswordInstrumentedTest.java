@@ -40,6 +40,12 @@ public class ForgotPasswordInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void correctEmailTest() {
         scenario.onActivity(activity -> {
             EditText email =  activity.findViewById(R.id.confirmEmail);

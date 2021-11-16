@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Homepage extends AppCompatActivity {
 
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private MaterialToolbar toolbar;
+
     public Homepage() {
 
     }
@@ -27,14 +32,16 @@ public class Homepage extends AppCompatActivity {
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppbar);
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
+        toolbar = (MaterialToolbar) findViewById(R.id.topAppbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
                 drawerLayout.openDrawer(GravityCompat.START);
+                TextView text = findViewById(R.id.nav_menu_name);
+                text.setText(loggedInAcct.getUsername());
 
             }
         });
@@ -44,7 +51,7 @@ public class Homepage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-                drawerLayout.closeDrawer(GravityCompat.START);
+                //drawerLayout.closeDrawer(GravityCompat.START);
                 switch (id)
                 {
 
@@ -71,10 +78,12 @@ public class Homepage extends AppCompatActivity {
                     case R.id.nav_log_out:
                         Intent intent4 = new Intent(Homepage.this, MainActivity.class);
                         startActivity(intent4);
-                        finishAffinity();break;
+                        finishAffinity();
+                        break;
                     default:
                         return true;
                 }
+                drawerLayout.closeDrawers();
                 return true;
             }
         });

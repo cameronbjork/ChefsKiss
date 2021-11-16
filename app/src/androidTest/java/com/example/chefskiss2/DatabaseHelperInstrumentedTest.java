@@ -1,5 +1,6 @@
 package com.example.chefskiss2;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -37,6 +38,12 @@ public class DatabaseHelperInstrumentedTest {
             db.close();
 
         });
+    }
+
+    @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
     }
 
     @Test

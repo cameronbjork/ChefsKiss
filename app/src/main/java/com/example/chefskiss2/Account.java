@@ -16,6 +16,14 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    //For test, not used throughout program
+    public Account(int id, String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.ACCOUNT_ID = id;
+    }
+
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
@@ -53,4 +61,7 @@ public class Account implements Serializable {
         return ACCOUNT_ID;
     }
 
+    public void setEmail(String custEmail) {
+        this.email = custEmail;
+    }
 }

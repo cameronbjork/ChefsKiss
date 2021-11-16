@@ -17,6 +17,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Homepage extends AppCompatActivity {
 
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private MaterialToolbar toolbar;
+
     public Homepage() {
 
     }
@@ -28,9 +32,9 @@ public class Homepage extends AppCompatActivity {
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppbar);
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.navigation_view);
+        toolbar = (MaterialToolbar) findViewById(R.id.topAppbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -47,7 +51,7 @@ public class Homepage extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-                drawerLayout.closeDrawer(GravityCompat.START);
+                //drawerLayout.closeDrawer(GravityCompat.START);
                 switch (id)
                 {
 
@@ -62,7 +66,9 @@ public class Homepage extends AppCompatActivity {
                         //Intent intent1 = new Intent()
                         break;
                     case R.id.nav_create_recipes:
-                        //Intent intent2 = new Intent(Homepage.this, CreateRecipe.class);
+                        Intent intent2 = new Intent(Homepage.this, CreateRecipe.class);
+                        intent2.putExtra("account", loggedInAcct);
+                        startActivity(intent2);
                         Toast.makeText(Homepage.this, "Create Recipes is Clicked",Toast.LENGTH_SHORT).show();break;
                     case R.id.nav_account:
                         Intent intent3 = new Intent(Homepage.this, AccountInfoPage.class);
@@ -72,10 +78,12 @@ public class Homepage extends AppCompatActivity {
                     case R.id.nav_log_out:
                         Intent intent4 = new Intent(Homepage.this, MainActivity.class);
                         startActivity(intent4);
-                        finishAffinity();break;
+                        finishAffinity();
+                        break;
                     default:
                         return true;
                 }
+                drawerLayout.closeDrawers();
                 return true;
             }
         });

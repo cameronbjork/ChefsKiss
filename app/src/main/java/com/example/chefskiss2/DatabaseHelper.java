@@ -148,8 +148,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE "+ COLUMN_USERNAME + " = ?",new String[]{account.getUsername()});
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
+            String custEmail = cursor.getString(1);
             String custUname = cursor.getString(2);
             account.setId(custId);
+            account.setEmail(custEmail);
             String custPassword = cursor.getString(3);
             if (custUname.equals(account.getUsername()) && custPassword.equals(account.getPassword())) {
                 account.setLoginStatus(true);
@@ -174,12 +176,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          */
         }
         return null;
-    }
-
-    public void killswitch() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(USER_TABLE, null, null);
-        db.close();
     }
 
     public Cursor rawQuery(String s, String[] strings) {

@@ -56,7 +56,9 @@ public class CreateRecipe extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+                intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 
@@ -87,6 +89,7 @@ public class CreateRecipe extends AppCompatActivity{
                     Intent intent = new Intent(CreateRecipe.this, Homepage.class);
                     intent.putExtra("account", loggedInAcct);
                     startActivity(intent);
+                    finishAffinity();
                 } else {
                     Toast.makeText(CreateRecipe.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
                 }

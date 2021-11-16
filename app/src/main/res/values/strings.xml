@@ -20,5 +20,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 =======
     <string name="invalidusername">*Invalid Username</string>
->>>>>>> 0a958599e972e67ea27e8ca8c6a1b58d82c09e02
+    <string name="uyftgyuygfcyhcf">uyftgyuygfcyhcf</string>
+    <string name="txtViewRecipe">TextView</string>
+    <string name="txtViewRecipeCard">Buffer, card view, RecipeName with Author, Link to individual Recipe Page</string>
+    >>>>>>> 0a958599e972e67ea27e8ca8c6a1b58d82c09e02
 </resources>

@@ -32,15 +32,15 @@
 
     <TextView
         android:id="@+id/textViewRecipeDescription"
-        android:layout_width="342dp"
-        android:layout_height="275dp"
+        android:layout_width="412dp"
+        android:layout_height="120dp"
         android:text="@string RecipeDescription"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.275" />
 
     <TextView
         android:id="@+id/textViewNutritionFactsLabel"
@@ -65,4 +65,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNutritionFactsLabel"
         app:layout_constraintVertical_bias="0.221" />
+
+    <ImageView
+        android:id="@+id/imgPfp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.008"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

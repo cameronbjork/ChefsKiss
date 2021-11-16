@@ -25,9 +25,10 @@ public class IndividualRecipePage extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked btnGoHome");
 
-                Intent intent = new Intent(IndiviudalRecipePAge.this, Homepage.class);
+                Intent intent = new Intent(IndiviudalRecipePage.this, Homepage.class);
                 startActivity(intent);
                 )
+
             }
         });
 

@@ -6,10 +6,11 @@
     package="com.example.chefskiss2">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/st_small_507x507_pad_600x600_f8f8f8"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -37,6 +38,7 @@
         <activity
             android:name=".CreateAccount"
             android:exported="true" />
+        <activity android:name=".CreateRecipe" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -46,9 +48,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ForgotPass"
-            tools:ignore="Instantiatable" />
     </application>
 
 </manifest>

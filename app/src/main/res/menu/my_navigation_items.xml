@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/nav_saved_recipes"
+        android:icon="@drawable/ic_star"
+        android:title="My Recipes"/>
+
+    <item
+        android:id="@+id/nav_create_recipes"
+        android:icon="@drawable/ic_edit"
+        android:title="Create Recipes"/>
+
+
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_menu_person"
+                android:title="Settings"/>
+
+            <item
+                android:id="@+id/nav_log_out"
+                android:icon="@drawable/ic_sign_out"
+                android:title="Log Out"/>
+        </menu>
+    </item>
+
+</menu>

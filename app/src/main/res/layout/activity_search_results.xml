@@ -18,6 +18,5 @@
         android:text="No Result"
         android:textSize = "20sp"
         android:visibility="gone"/>
-"
 
 </RelativeLayout>

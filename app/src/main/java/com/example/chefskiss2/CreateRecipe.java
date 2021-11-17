@@ -46,7 +46,7 @@ public class CreateRecipe extends AppCompatActivity{
 
                 //*** Checking if the description is greater than 1000 characters
                 if (description.length() < 1000) {
-                    Recipe recipe = new Recipe(titleString, ingredientsString, descriptionString);
+                    Recipe recipe = new Recipe(Id,titleString, ingredientsString, descriptionString);
                     RecipeDatabaseHelper.addOne(recipe);
                     RecipeDatabaseHelper.close();
                         Intent intent = new Intent(CreateRecipe.this, Homepage.class);

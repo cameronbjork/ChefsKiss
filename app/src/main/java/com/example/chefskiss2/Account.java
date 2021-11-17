@@ -53,4 +53,7 @@ public class Account implements Serializable {
         return ACCOUNT_ID;
     }
 
+    public void setEmail(String custEmail) {
+        this.email = custEmail;
+    }
 }

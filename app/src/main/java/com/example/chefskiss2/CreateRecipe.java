@@ -19,7 +19,7 @@ import java.io.ByteArrayOutputStream;
 
 public class CreateRecipe extends AppCompatActivity{
     public RecipeController RC;
-    private byte[] imageByteArray;
+    private String imageURI;
     final int PICK_IMAGE = 100;
 
     @Override
@@ -72,21 +72,20 @@ public class CreateRecipe extends AppCompatActivity{
                 //*** Checking if the description is greater than 1000 characters
                 if (description.length() < 1000) {
 
-                    if (imageByteArray == null) {
+                    if (imageURI == null) {
                         //Converts bitmap to byte array
-                        Bitmap bm = ((BitmapDrawable)image.getDrawable()).getBitmap();
-                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                        bm.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-                        imageByteArray = outputStream.toByteArray();
+                        Uri path = Uri.parse("android.resource://com.example.chefskiss2/" + R.drawable.custom_lock_icon);
+                        imageURI = path.toString();
                     }
 
-                    Recipe recipe = new Recipe(loggedInAcct.getId(), titleString, ingredientsString, descriptionString, imageByteArray);
+                    Recipe recipe = new Recipe(loggedInAcct.getId(), titleString, ingredientsString, descriptionString, imageURI);
                     rdb.addOne(recipe);
                     rdb.close();
 
-                    Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+                    Intent intent = new Intent(CreateRecipe.this, SavedRecipes.class);
                     intent.putExtra("account", loggedInAcct);
                     startActivity(intent);
+                    finishAffinity();
                 } else {
                     Toast.makeText(CreateRecipe.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
                 }
@@ -107,12 +106,8 @@ public class CreateRecipe extends AppCompatActivity{
             imageView.setImageURI(imageUri);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setCropToPadding(true);
+            imageURI = imageUri.toString();
 
-            //Converts bitmap to byte array
-            Bitmap bm = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            imageByteArray = outputStream.toByteArray();
         }
     }
     }

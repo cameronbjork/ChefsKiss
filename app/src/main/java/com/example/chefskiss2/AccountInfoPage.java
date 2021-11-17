@@ -30,37 +30,6 @@ public class AccountInfoPage extends AppCompatActivity {
         usernameEditText.setText(loggedInAcct.getUsername());
         passwordEditText.setText(loggedInAcct.getPassword());
 
-        passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    passwordEditText.setSelection(passwordEditText.getText().length());
-                }
-
-            }
-        });
-
-        emailEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    emailEditText.setSelection(emailEditText.getText().length());
-                }
-
-            }
-        });
-
-        usernameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    usernameEditText.setSelection(usernameEditText.getText().length());
-                }
-
-            }
-        });
-
-
         Button backhomebtn = (Button) findViewById(R.id.buttontohomepage);
 
         backhomebtn.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +38,9 @@ public class AccountInfoPage extends AppCompatActivity {
                 Log.d(TAG, "onClick: clicked backtohomebtn.");
 
                 Intent intent = new Intent(AccountInfoPage.this, Homepage.class);
+                intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
+                finishAffinity();
             }
         });
         Button editaccountbtn = (Button) findViewById(R.id.buttontoedit);

@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "chefsKiss.db", null, 2);
+        super(context, "chefsKiss.db", null, 3);
     }
 
     //called the first time a database is accessed. Creates a new database
@@ -148,6 +148,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + USER_TABLE + " WHERE "+ COLUMN_USERNAME + " = ?",new String[]{account.getUsername()});
         if (cursor.moveToFirst()) {
             int custId = cursor.getInt(0);
+            String custEmail = cursor.getString(1);
+            account.setEmail(custEmail);
             String custUname = cursor.getString(2);
             account.setId(custId);
             String custPassword = cursor.getString(3);

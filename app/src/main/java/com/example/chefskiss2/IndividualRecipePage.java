@@ -56,6 +56,18 @@ public class IndividualRecipePage extends AppCompatActivity{
             }
         });
 
+        Button deleteRecipe = (Button) findViewById(R.id.deleteRecipe);
+        deleteRecipe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rdb.deleteOne(recipeIn);
+                Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
+                intent.putExtra("account", loggedInAcct);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
 
         Button editRecipe = (Button) findViewById(R.id.editRecipe);
 
@@ -111,7 +123,7 @@ public class IndividualRecipePage extends AppCompatActivity{
         super.onActivityResult(reqCode, resultCode, data);
 
         Uri imageUri;
-        ImageView imageView = findViewById(R.id.imageButton);
+        ImageView imageView = findViewById(R.id.viewRecipeImage);
 
         if (resultCode == RESULT_OK && reqCode == 100){
             imageUri = data.getData();

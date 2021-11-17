@@ -9,8 +9,7 @@ public class RecipeUnitTest {
 
     @Before
     public void init() {
-        byte[] imagearray = {1, 2};
-        r1 = new Recipe(1, "title", "ingredients", "directions", imagearray);
+        r1 = new Recipe(1, "title", "ingredients", "directions", "imageURI");
     }
 
     @Test
@@ -35,6 +34,6 @@ public class RecipeUnitTest {
 
     @Test
     public void getImageArrayTest() {
-        assertEquals(1, r1.getImageByteArray()[0]);
+        assertNotNull(r1.getImageURI());
     }
 }

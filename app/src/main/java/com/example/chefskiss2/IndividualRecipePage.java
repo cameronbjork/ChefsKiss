@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class IndividualRecipePage extends AppCompatActivity {
 
-    private static final String TAG = "IndividualRecipePage;
+    private static final String TAG = "IndividualRecipePage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,8 @@ public class IndividualRecipePage extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked btnGoHome");
 
-                Intent intent = new Intent(IndiviudalRecipePage.this, Homepage.class);
+                Intent intent = new Intent(IndividualRecipePage.this, Homepage.class);
                 startActivity(intent);
-                )
 
             }
         });

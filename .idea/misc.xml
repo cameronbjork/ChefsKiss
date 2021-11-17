@@ -3,14 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_account_info_page.xml" value="0.1" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_create_account.xml" value="0.1" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_homepage.xml" value="0.14719202898550723" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_individual_recipe_page.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/activity_search_results.xml" value="0.1539855072463768" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/ChefsKiss/app/src/main/res/layout/content_saved_recipes.xml" value="0.22" />
-=======
         <entry key="../ChefsKiss/app/src/main/res/drawable/custom_email_icon.xml" value="0.3138888888888889" />
         <entry key="../ChefsKiss/app/src/main/res/layout/activity_account_info_page.xml" value="0.25555555555555554" />
         <entry key="../ChefsKiss/app/src/main/res/layout/activity_create_account.xml" value="0.2799633350534253" />
@@ -47,12 +39,24 @@
         <entry key="app/src/main/res/layout/activity_create_recipe.xml" value="0.1742331592231088" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.153125" />
+        <entry key="app/src/main/res/layout/activity_individual_recipe_page.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_list_layout.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_saved_recipes.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_search_results.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/adapter_recipe_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/adapter_view_layout.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/content_saved_recipes.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/create_account_layout.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/menu/my_navigation_items.xml" value="0.16770833333333332" />
->>>>>>> 723a49119a5ad2464b99cbb7e3d375fd456418bc
       </map>
     </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
   </component>
 </project>

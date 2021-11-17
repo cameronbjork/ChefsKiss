@@ -1,51 +1,55 @@
 package com.example.chefskiss2;
 
-import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.ImageViewCompat;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import com.example.chefskiss2.databinding.ActivitySavedRecipesBinding;
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 public class SavedRecipes extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivitySavedRecipesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_saved_recipes);
 
-        binding = ActivitySavedRecipesBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
-        setSupportActionBar(binding.toolbar);
+        ListView list = (ListView) findViewById(R.id.recipeList);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_saved_recipes);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(this);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        ArrayList<Recipe> recipeList = rdb.getSavedRecipes(loggedInAcct);
+        rdb.close();
+        RecipeListAdapter adapter = new RecipeListAdapter(this, R.layout.adapter_recipe_layout, recipeList);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Recipe r = (Recipe) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
+                intent.putExtra("recipe", r);
+                intent.putExtra("account", loggedInAcct);
+                startActivity(intent);
+                finishAffinity();
             }
         });
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_saved_recipes);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }

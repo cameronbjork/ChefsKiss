@@ -8,7 +8,6 @@
     <string name="username2">Username</string>
     <string name="password_must_contain_n_uppercase_letter_n_lowercase_letter_n_number_n_special_character">Password must contain:\n - Uppercase Letter\n - Lowercase Letter\n - Number\n - Special Character($!?,.)</string>
     <string name="password2">Password</string>
-<<<<<<< HEAD
     <string name="title_activity_saved_recipes">SavedRecipes</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -18,10 +17,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-=======
     <string name="invalidusername">*Invalid Username</string>
     <string name="uyftgyuygfcyhcf">uyftgyuygfcyhcf</string>
     <string name="txtViewRecipe">TextView</string>
-    <string name="txtViewRecipeCard">Buffer, card view, RecipeName with Author, Link to individual Recipe Page</string>
-    >>>>>>> 0a958599e972e67ea27e8ca8c6a1b58d82c09e02
 </resources>

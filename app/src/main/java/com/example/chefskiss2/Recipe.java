@@ -8,7 +8,7 @@ public class Recipe implements Serializable {
     private String ingredients;
     private String directions;
     private int id;
-    private byte[] imageByteArray;
+    private String imageURI;
 
 
     public Recipe(int id, String title, String ingredients, String directions) {
@@ -18,12 +18,12 @@ public class Recipe implements Serializable {
         this.directions = directions;
     }
 
-    public Recipe(int id, String title, String ingredients, String directions, byte[] imageByteArray) {
+    public Recipe(int id, String title, String ingredients, String directions, String imageURI) {
         this.id = id;
         this.title = title;
         this.ingredients = ingredients;
         this.directions = directions;
-        this.imageByteArray = imageByteArray;
+        this.imageURI = imageURI;
     }
 
     public String getTitle() {
@@ -40,5 +40,5 @@ public class Recipe implements Serializable {
 
     public int getId() { return this.id; }
 
-    public byte[] getImageByteArray() { return imageByteArray; }
+    public String getImageURI() { return imageURI; }
 }

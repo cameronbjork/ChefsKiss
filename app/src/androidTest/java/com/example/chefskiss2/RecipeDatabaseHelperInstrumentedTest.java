@@ -1,14 +1,12 @@
 package com.example.chefskiss2;
 
 import androidx.lifecycle.Lifecycle;
-import androidx.room.Database;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static org.junit.Assert.*;
 
-import android.provider.ContactsContract;
 
 import org.junit.After;
 import org.junit.Before;

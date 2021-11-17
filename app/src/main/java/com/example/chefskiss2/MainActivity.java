@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //Create Account Button
         Button createAccountBtn = (Button) findViewById(R.id.createAccountBtn);
         createAccountBtn.setOnClickListener(new View.OnClickListener() {
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //AccountInfo Button
-        Button accInfoBtn = (Button) findViewById(R.id.buttontoaccinfo);
+        //Button accInfoBtn = (Button) findViewById(R.id.buttontoaccinfo);
 
 
         Button loginBtn = (Button) findViewById(R.id.loginAccountBtn);

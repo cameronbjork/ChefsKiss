@@ -8,6 +8,7 @@ public class Recipe implements Serializable {
     private String ingredients;
     private String directions;
     private int id;
+    private String imageURI;
 
 
     public Recipe(int id, String title, String ingredients, String directions) {
@@ -15,6 +16,14 @@ public class Recipe implements Serializable {
         this.title = title;
         this.ingredients = ingredients;
         this.directions = directions;
+    }
+
+    public Recipe(int id, String title, String ingredients, String directions, String imageURI) {
+        this.id = id;
+        this.title = title;
+        this.ingredients = ingredients;
+        this.directions = directions;
+        this.imageURI = imageURI;
     }
 
     public String getTitle() {
@@ -29,5 +38,7 @@ public class Recipe implements Serializable {
         return this.directions;
     }
 
+    public int getId() { return this.id; }
 
+    public String getImageURI() { return imageURI; }
 }

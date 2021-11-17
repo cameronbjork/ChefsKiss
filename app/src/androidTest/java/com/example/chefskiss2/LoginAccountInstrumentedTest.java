@@ -34,6 +34,12 @@ public class LoginAccountInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void testCorrectLogin() {
         scenario.onActivity(activity -> {
             EditText username = activity.findViewById(R.id.username);

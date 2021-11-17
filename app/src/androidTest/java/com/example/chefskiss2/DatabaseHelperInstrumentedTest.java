@@ -1,7 +1,12 @@
 package com.example.chefskiss2;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import androidx.lifecycle.Lifecycle;
-import androidx.room.Database;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -11,7 +16,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -37,6 +41,12 @@ public class DatabaseHelperInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void testGetAllUsers() {
         scenario.onActivity(activity -> {
             DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
@@ -44,7 +54,7 @@ public class DatabaseHelperInstrumentedTest {
             db.close();
 
             boolean result = false;
-            if (all.size() > 1) {
+            if (all.size() > 0) {
                 result = true;
             }
             assertTrue(result);

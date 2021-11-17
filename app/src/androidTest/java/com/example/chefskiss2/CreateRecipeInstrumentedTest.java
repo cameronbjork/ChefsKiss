@@ -36,6 +36,12 @@ public class CreateRecipeInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void correctInfoTest() {
         scenario.onActivity(activity -> {
             EditText name = activity.findViewById(R.id.editTextTitle);
@@ -55,7 +61,8 @@ public class CreateRecipeInstrumentedTest {
             assertEquals("Name", recipes.get(0).getTitle());
             assertEquals("Directions", recipes.get(0).getDirections());
             assertEquals("Ingredients", recipes.get(0).getIngredients());
-            assertNotNull(recipes.get(0).getImageByteArray());
+            assertEquals(100, recipes.get(0).getId());
+            assertNotNull(recipes.get(0).getImageURI());
             rdb.close();
 
         });

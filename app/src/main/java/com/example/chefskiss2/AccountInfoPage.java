@@ -10,6 +10,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AccountInfoPage extends AppCompatActivity {
+    private Account loggedInAcct;
 
     private static final String TAG = "AccountInfoPage";
 
@@ -20,7 +21,7 @@ public class AccountInfoPage extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(this);
         Log.d(TAG, "onCreate: Starting.");
 
-        Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
+        loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
         EditText emailEditText = (EditText) findViewById(R.id.userEmail2);
         EditText passwordEditText = (EditText) findViewById(R.id.password2);
@@ -44,6 +45,7 @@ public class AccountInfoPage extends AppCompatActivity {
                 finishAffinity();
             }
         });
+
         Button editaccountbtn = (Button) findViewById(R.id.buttontoedit);
 
         editaccountbtn.setOnClickListener(new View.OnClickListener() {

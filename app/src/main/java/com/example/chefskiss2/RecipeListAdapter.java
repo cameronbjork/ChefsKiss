@@ -68,7 +68,7 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
 
     private void setUpImageLoader() {
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisk(true).cacheInMemory(true).imageScaleType(ImageScaleType.EXACTLY)
+                .cacheOnDisk(true).cacheInMemory(true).imageScaleType(ImageScaleType.NONE)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)

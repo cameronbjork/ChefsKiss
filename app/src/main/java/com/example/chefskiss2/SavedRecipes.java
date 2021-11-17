@@ -51,7 +51,5 @@ public class SavedRecipes extends AppCompatActivity {
                 finishAffinity();
             }
         });
-
-
     }
 }

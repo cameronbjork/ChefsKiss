@@ -44,6 +44,12 @@ public class RecipeDatabaseHelperInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void testAddOne() {
         scenario.onActivity(activity -> {
             RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(activity.getApplicationContext());

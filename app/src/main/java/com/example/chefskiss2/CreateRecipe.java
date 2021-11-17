@@ -56,7 +56,9 @@ public class CreateRecipe extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+                intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 

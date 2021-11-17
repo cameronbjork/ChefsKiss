@@ -34,6 +34,12 @@ public class AccountInfoPageInstrumentedTest {
     }
 
     @Test
+    public void onCreateTest() {
+        //Tests that the program is started in the before
+        assertEquals(Lifecycle.State.CREATED, scenario.getState());
+    }
+
+    @Test
     public void testAccountPassedFromHomepage() {
         scenario.onActivity(activity -> {
 
@@ -48,6 +54,7 @@ public class AccountInfoPageInstrumentedTest {
         });
     }
 
+    //SystemTest
     @Test
     public void testChangeAccountInfo() {
         scenario.onActivity(activity -> {
@@ -76,6 +83,11 @@ public class AccountInfoPageInstrumentedTest {
 
     @After
     public void closeScenario() {
+        scenario.onActivity(activity -> {
+            DatabaseHelper db = new DatabaseHelper(activity.getApplicationContext());
+            db.deleteOne(loggedInAcct);
+            db.close();
+        });
         scenario.close();
     }
 

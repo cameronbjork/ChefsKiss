@@ -152,6 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             account.setEmail(custEmail);
             String custUname = cursor.getString(2);
             account.setId(custId);
+            account.setEmail(custEmail);
             String custPassword = cursor.getString(3);
             if (custUname.equals(account.getUsername()) && custPassword.equals(account.getPassword())) {
                 account.setLoginStatus(true);

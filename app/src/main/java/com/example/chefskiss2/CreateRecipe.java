@@ -74,6 +74,7 @@ public class CreateRecipe extends AppCompatActivity{
                 //*** Checking if the description is greater than 1000 characters
                 if (description.length() < 1000) {
 
+
                     if (imageURI == null) {
                         //Converts bitmap to byte array
                         Uri path = Uri.parse("android.resource://com.example.chefskiss2/" + R.drawable.custom_lock_icon);

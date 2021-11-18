@@ -1,5 +1,7 @@
 package com.example.chefskiss2;
 
+import static android.net.Uri.parse;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -17,26 +19,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 
-public class CreateRecipe extends AppCompatActivity{
+public class IndividualRecipePage extends AppCompatActivity{
     public RecipeController RC;
-    private String imageURI;
+    private String imageURI = "";
     final int PICK_IMAGE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_recipe);
+        setContentView(R.layout.activity_individual_recipe_page);
         RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(this);
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
+        Recipe recipeIn = (Recipe) getIntent().getSerializableExtra("recipe");
 
         //initialized
-        EditText title = (EditText) findViewById(R.id.editTextTitle);
-        EditText description = (EditText) findViewById(R.id.editTextDescription);
-        EditText ingredients = (EditText) findViewById(R.id.editTextIngredients);
+        EditText title = (EditText) findViewById(R.id.viewRecipeName);
+        title.setText(recipeIn.getTitle());
+        EditText directions = (EditText) findViewById(R.id.viewRecipeDescription);
+        directions.setText(recipeIn.getDirections());
+        EditText ingredients = (EditText) findViewById(R.id.viewRecipeIngredients);
+        ingredients.setText(recipeIn.getIngredients());
 
 
-        ImageButton image = (ImageButton) findViewById(R.id.imageButton);
+        ImageButton image = (ImageButton) findViewById(R.id.viewRecipeImage);
+        Uri uri = parse(recipeIn.getImageURI());
+        imageURI = uri.toString();
+        image.setImageURI(uri);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,15 +56,12 @@ public class CreateRecipe extends AppCompatActivity{
             }
         });
 
-
-        Button createRecipe = (Button) findViewById(R.id.createRecipe);
-
-        Button cancel = (Button) findViewById(R.id.cancelButton);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
+        Button deleteRecipe = (Button) findViewById(R.id.deleteRecipe);
+        deleteRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreateRecipe.this, Homepage.class);
+            public void onClick(View view) {
+                rdb.deleteOne(recipeIn);
+                Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
                 intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
                 finishAffinity();
@@ -63,46 +69,61 @@ public class CreateRecipe extends AppCompatActivity{
         });
 
 
-        createRecipe.setOnClickListener(new View.OnClickListener() {
+        Button editRecipe = (Button) findViewById(R.id.editRecipe);
+
+        Button cancel = (Button) findViewById(R.id.backToSavedButton);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
+                intent.putExtra("account", loggedInAcct);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
+
+        editRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String titleString = title.getText().toString();
-                String descriptionString = description.getText().toString();
+                String descriptionString = directions.getText().toString();
                 String ingredientsString = ingredients.getText().toString();
 
                 //*** Checking if the description is greater than 1000 characters
-                if (description.length() < 1000) {
+                if (directions.length() < 1000) {
 
-
-                    if (imageURI == null) {
+                    if (imageURI.isEmpty()) {
                         //Converts bitmap to byte array
-                        Uri path = Uri.parse("android.resource://com.example.chefskiss2/" + R.drawable.custom_lock_icon);
+                        Uri path = parse("android.resource://com.example.chefskiss2/" + R.drawable.custom_lock_icon);
                         imageURI = path.toString();
                     }
 
                     Recipe recipe = new Recipe(loggedInAcct.getId(), titleString, ingredientsString, descriptionString, imageURI);
-                    rdb.addOne(recipe);
+                    rdb.updateOne(recipeIn, recipe);
                     rdb.close();
 
-                    Intent intent = new Intent(CreateRecipe.this, SavedRecipes.class);
+                    Intent intent = new Intent(IndividualRecipePage.this, IndividualRecipePage.class);
                     intent.putExtra("account", loggedInAcct);
+                    intent.putExtra("recipe", recipe);
                     startActivity(intent);
                     finishAffinity();
                 } else {
-                    Toast.makeText(CreateRecipe.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(IndividualRecipePage.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
                 }
 
-                }
-            });
-        }
+            }
+        });
+    }
 
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
 
         Uri imageUri;
-        ImageView imageView = findViewById(R.id.imageButton);
+        ImageView imageView = findViewById(R.id.viewRecipeImage);
 
         if (resultCode == RESULT_OK && reqCode == 100){
             imageUri = data.getData();
@@ -113,4 +134,4 @@ public class CreateRecipe extends AppCompatActivity{
 
         }
     }
-    }
+}

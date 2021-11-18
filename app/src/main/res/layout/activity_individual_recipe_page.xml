@@ -7,64 +7,75 @@
 
 
     <EditText
-        android:id="@+id/editTextDescription"
+        android:id="@+id/viewRecipeDescription"
         android:layout_width="348dp"
         android:layout_height="149dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="76dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="12dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Directions"
+        android:hint="Description"
         android:inputType="textPersonName"
         android:textColor="#858585"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/viewRecipeName" />
 
     <Button
-        android:id="@+id/cancelButton"
+        android:id="@+id/deleteRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Cancel"
-        app:layout_constraintEnd_toStartOf="@+id/createRecipe"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/round_btn"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIngredients" />
-
-    <Button
-        android:id="@+id/createRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="64dp"
-        android:text="Create"
-        android:background="@drawable/round_btn"
+        android:text="Delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIngredients" />
+        app:layout_constraintTop_toBottomOf="@+id/viewRecipeIngredients" />
+
+    <Button
+        android:id="@+id/backToSavedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_btn"
+        android:text="Cancel"
+        app:layout_constraintEnd_toStartOf="@+id/editRecipe"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewRecipeIngredients" />
+
+    <Button
+        android:id="@+id/editRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="160dp"
+        android:background="@drawable/round_btn"
+        android:text="Edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewRecipeIngredients" />
 
     <EditText
-        android:id="@+id/editTextIngredients"
-        android:layout_width="348dp"
-        android:layout_height="123dp"
+        android:id="@+id/viewRecipeIngredients"
+        android:layout_width="347dp"
+        android:layout_height="121dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:gravity="center"
-        android:hint="Ingredients"
+        android:hint="ingredients"
         android:inputType="textPersonName"
         android:textColor="#858585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintTop_toBottomOf="@+id/viewRecipeDescription"
+        app:layout_constraintVertical_bias="0.168" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/viewRecipeImage"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="32dp"
@@ -75,7 +86,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextTitle"
+        android:id="@+id/viewRecipeName"
         android:layout_width="209dp"
         android:layout_height="48dp"
         android:layout_marginTop="84dp"
@@ -87,7 +98,7 @@
         android:textColor="#858585"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/viewRecipeImage"
         app:layout_constraintTop_toTopOf="parent" />
 
 

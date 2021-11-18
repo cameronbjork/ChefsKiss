@@ -62,7 +62,7 @@ public class CreateRecipeInstrumentedTest {
             assertEquals("Directions", recipes.get(0).getDirections());
             assertEquals("Ingredients", recipes.get(0).getIngredients());
             assertEquals(100, recipes.get(0).getId());
-            assertNotNull(recipes.get(0).getImageByteArray());
+            assertNotNull(recipes.get(0).getImageURI());
             rdb.close();
 
         });

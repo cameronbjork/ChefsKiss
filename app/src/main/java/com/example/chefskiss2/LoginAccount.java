@@ -48,6 +48,7 @@ public class LoginAccount extends AppCompatActivity {
                     Intent intent = new Intent(LoginAccount.this, Homepage.class);
                     intent.putExtra("account", result);
                     startActivity(intent);
+                    finishAffinity();
                 } else if (result != null && result.getLoginStatus() == false) {
                     Toast.makeText(LoginAccount.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 } else {

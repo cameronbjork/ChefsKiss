@@ -28,6 +28,7 @@ public class AccountInfoPage extends AppCompatActivity {
         EditText usernameEditText = (EditText) findViewById(R.id.username2);
 
         emailEditText.setText(loggedInAcct.getEmail());
+        emailEditText.setText(loggedInAcct.getEmail());
         usernameEditText.setText(loggedInAcct.getUsername());
         passwordEditText.setText(loggedInAcct.getPassword());
 

@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
 
-
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="348dp"
@@ -16,8 +15,8 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="Directions"
         android:inputType="textPersonName"
-        android:hint="Description"
         android:textColor="#858585"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
@@ -54,8 +53,8 @@
         android:background="@drawable/custom_input"
         android:ems="10"
         android:gravity="center"
+        android:hint="Ingredients"
         android:inputType="textPersonName"
-        android:hint="ingredients"
         android:textColor="#858585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

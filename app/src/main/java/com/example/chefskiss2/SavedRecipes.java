@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -46,6 +47,17 @@ public class SavedRecipes extends AppCompatActivity {
                 Recipe r = (Recipe) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
                 intent.putExtra("recipe", r);
+                intent.putExtra("account", loggedInAcct);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
+        Button backBtn = (Button) findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SavedRecipes.this, Homepage.class);
                 intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
                 finishAffinity();

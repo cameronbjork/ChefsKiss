@@ -66,8 +66,10 @@ public class CreateRecipe extends AppCompatActivity{
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String titleString = title.getText().toString();
+                if (titleString == null) {
+                    titleString = " ";
+                }
                 String descriptionString = description.getText().toString();
                 String ingredientsString = ingredients.getText().toString();
 

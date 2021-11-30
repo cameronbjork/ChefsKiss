@@ -15,11 +15,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import org.naishadhparmar.zcustomcalendar.CustomCalendar;
+import org.naishadhparmar.zcustomcalendar.Property;
+
+import java.util.HashMap;
+
 public class Homepage extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private MaterialToolbar toolbar;
+    CustomCalendar mealCalendar;
 
     public Homepage() {
 
@@ -29,6 +35,11 @@ public class Homepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        mealCalendar = findViewById(R.id.mealCalendar);
+        HashMap<Object, Property> descriptionHashMap = new HashMap<>();
+        Property defaultProperty = new Property();
+        //defaultProperty.layoutResource = R.id.layout.default_view;
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
@@ -56,27 +67,29 @@ public class Homepage extends AppCompatActivity {
                 {
 
                     case R.id.nav_home:
-                        Toast.makeText(Homepage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Homepage.this, Homepage.class);
                         intent.putExtra("account", loggedInAcct);
                         startActivity(intent);
+                        finishAffinity();
                         break;
                     case R.id.nav_saved_recipes:
-                        Toast.makeText(Homepage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(Homepage.this, SavedRecipes.class);
                         intent1.putExtra("account", loggedInAcct);
                         startActivity(intent1);
+                        finishAffinity();
                         break;
                     case R.id.nav_create_recipes:
                         Intent intent2 = new Intent(Homepage.this, CreateRecipe.class);
                         intent2.putExtra("account", loggedInAcct);
                         startActivity(intent2);
-                        Toast.makeText(Homepage.this, "Create Recipes is Clicked",Toast.LENGTH_SHORT).show();break;
+                        finishAffinity();
+                        break;
                     case R.id.nav_account:
                         Intent intent3 = new Intent(Homepage.this, AccountInfoPage.class);
                         intent3.putExtra("account", loggedInAcct);
                         startActivity(intent3);
-                        Toast.makeText(Homepage.this, "Account is Clicked",Toast.LENGTH_SHORT).show();break;
+                        finishAffinity();
+                        break;
                     case R.id.nav_log_out:
                         Intent intent4 = new Intent(Homepage.this, MainActivity.class);
                         startActivity(intent4);

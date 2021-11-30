@@ -56,14 +56,14 @@ public class Homepage extends AppCompatActivity {
                 {
 
                     case R.id.nav_home:
-                        Toast.makeText(Homepage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Homepage.this, Homepage.class);
+                        Toast.makeText(Homepage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         intent.putExtra("account", loggedInAcct);
                         startActivity(intent);
                         break;
                     case R.id.nav_saved_recipes:
-                        Toast.makeText(Homepage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(Homepage.this, SavedRecipes.class);
+                        Toast.makeText(Homepage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         intent1.putExtra("account", loggedInAcct);
                         startActivity(intent1);
                         break;

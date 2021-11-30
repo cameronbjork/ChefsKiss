@@ -80,8 +80,7 @@
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
- />
+        android:paddingEnd="12dp" />
 
     <TextView
         android:id="@+id/invalidInfoMessage"

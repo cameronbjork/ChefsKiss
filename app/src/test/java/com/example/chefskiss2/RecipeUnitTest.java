@@ -36,4 +36,7 @@ public class RecipeUnitTest {
     public void getImageArrayTest() {
         assertNotNull(r1.getImageURI());
     }
+
+    @Test
+    public void returnSearchResultsTest() {}
 }

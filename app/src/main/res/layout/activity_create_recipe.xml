@@ -26,32 +26,19 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextIngredients" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/cancelEdit"
-=======
         android:id="@+id/cancelButton"
->>>>>>> a4422eca298aea6d6de566cefb0008216f373d65
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:background="@drawable/round_btn"
         android:text="Cancel"
-<<<<<<< HEAD
-        app:layout_constraintEnd_toStartOf="@+id/editRecipe"
-        app:layout_constraintHorizontal_bias="0.51"
-=======
         app:layout_constraintEnd_toStartOf="@+id/createRecipe"
         app:layout_constraintHorizontal_bias="0.562"
->>>>>>> a4422eca298aea6d6de566cefb0008216f373d65
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/editRecipe"
-=======
         android:id="@+id/createRecipe"
->>>>>>> a4422eca298aea6d6de566cefb0008216f373d65
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -67,18 +54,11 @@
         android:layout_height="123dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_input"
-<<<<<<< HEAD
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:text="Ingredients"
-=======
         android:gravity="left"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:hint="Ingredients"
         android:inputType="textMultiLine"
->>>>>>> a4422eca298aea6d6de566cefb0008216f373d65
         android:textColor="#858585"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
-        android:text="Create"
+        android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="522dp" />
 
@@ -48,7 +48,7 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Ingredients"
+        android:text="Ingredience"
         android:textColor="#858585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

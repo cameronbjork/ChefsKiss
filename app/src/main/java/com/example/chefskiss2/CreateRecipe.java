@@ -67,14 +67,11 @@ public class CreateRecipe extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 String titleString = title.getText().toString();
-                if (titleString == null) {
-                    titleString = " ";
-                }
                 String descriptionString = description.getText().toString();
                 String ingredientsString = ingredients.getText().toString();
 
                 //*** Checking if the description is greater than 1000 characters
-                if (description.length() < 1000) {
+                if (descriptionString.length() < 1000) {
 
 
                     if (imageURI == null) {

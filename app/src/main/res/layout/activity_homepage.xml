@@ -30,9 +30,18 @@
             android:id="@+id/mealCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="100dp"
+            >
 
         </org.naishadhparmar.zcustomcalendar.CustomCalendar>
+
+        <ListView
+            android:id="@+id/mealCalendarList"
+            android:layout_width="match_parent"
+            android:layout_height="521dp"
+            android:layout_marginTop="400dp">
+
+        </ListView>
 
 
     </RelativeLayout>

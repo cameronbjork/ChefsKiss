@@ -177,6 +177,38 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         return recipeList;
     }
 
+    public Recipe findRecipeByIdAndTitle(int id, String title) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer id2 = id;
+
+        Cursor cursor = db.rawQuery("select * from " + RECIPE_TABLE + " where " + COLUMN_ID + "=? and " +
+                COLUMN_TITLE + "=?", new String[]{id2.toString(), title});
+
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                int tempCurs = cursor.getColumnIndex(COLUMN_TITLE);
+                String title2 = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_INGREDIENTS);
+                String ingredients = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_DIRECTIONS);
+                String directions = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_PHOTO);
+                String imageByteArray = cursor.getString(tempCurs);
+
+                Recipe temp = new Recipe(id, title2, ingredients, directions, imageByteArray);
+                recipeList.add(temp);
+
+                cursor.moveToNext();
+            }
+        }
+        return recipeList.get(0);
+    }
+
     /**
     public ArrayList<Recipe> searchSavedRecipes(String searchString) {
 

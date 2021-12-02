@@ -28,7 +28,7 @@ public class RecipeUnitTest {
     }
 
     @Test
-    public void getDirerctionsTest() {
+    public void getDirectionsTest() {
         assertEquals("directions", r1.getDirections());
     }
 

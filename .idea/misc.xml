@@ -45,11 +45,16 @@
         <entry key="app/src/main/res/layout/activity_recipe_info_page.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_saved_recipes.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_search_results.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/activity_select_recipe.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/adapter_meal_layout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/adapter_recipe_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/adapter_view_layout.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/content_saved_recipes.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/create_account_layout.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/layout/current_calendar_view.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/default_calendar_view.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/present_calendar_view.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/my_navigation_items.xml" value="0.16770833333333332" />
       </map>
     </option>

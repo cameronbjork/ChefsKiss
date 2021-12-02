@@ -2,7 +2,6 @@ package com.example.chefskiss2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +17,7 @@ public class LoginAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
 
         EditText username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
@@ -44,11 +44,12 @@ public class LoginAccount extends AppCompatActivity {
 
                 Account result = databaseHelper.login(acct);
 
-                if (result.getLoginStatus() == true) {
+                if (result != null && result.getLoginStatus() == true) {
                     Intent intent = new Intent(LoginAccount.this, Homepage.class);
                     intent.putExtra("account", result);
                     startActivity(intent);
-                } else if (result.getLoginStatus() == false) {
+                    finishAffinity();
+                } else if (result != null && result.getLoginStatus() == false) {
                     Toast.makeText(LoginAccount.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginAccount.this, "Invalid Username", Toast.LENGTH_SHORT).show();

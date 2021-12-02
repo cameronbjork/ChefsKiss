@@ -3,6 +3,7 @@ package com.example.chefskiss2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ImageViewCompat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,14 +24,15 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class SavedRecipes extends AppCompatActivity {
+public class SelectRecipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_saved_recipes);
+        setContentView(R.layout.activity_select_recipe);
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
+        String time = (String) getIntent().getSerializableExtra("time");
 
         ListView list = (ListView) findViewById(R.id.recipeList);
 
@@ -45,12 +47,11 @@ public class SavedRecipes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Recipe r = (Recipe) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
-                intent.putExtra("recipe", r);
-                intent.putExtra("account", loggedInAcct);
-                intent.putExtra("from", "Saved");
-                startActivity(intent);
-                finishAffinity();
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("recipe", r);
+                returnIntent.putExtra("time", time);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
             }
         });
 
@@ -58,10 +59,9 @@ public class SavedRecipes extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SavedRecipes.this, Homepage.class);
-                intent.putExtra("account", loggedInAcct);
-                startActivity(intent);
-                finishAffinity();
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_CANCELED, returnIntent);
+                finish();
             }
         });
     }

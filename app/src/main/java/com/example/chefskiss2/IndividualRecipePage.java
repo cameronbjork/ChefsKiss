@@ -32,6 +32,7 @@ public class IndividualRecipePage extends AppCompatActivity{
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
         Recipe recipeIn = (Recipe) getIntent().getSerializableExtra("recipe");
+        String from = (String) getIntent().getSerializableExtra("from");
 
         //initialized
         EditText title = (EditText) findViewById(R.id.viewRecipeName);
@@ -76,10 +77,18 @@ public class IndividualRecipePage extends AppCompatActivity{
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
-                intent.putExtra("account", loggedInAcct);
-                startActivity(intent);
-                finishAffinity();
+                if (from.equals("Saved")) {
+                    Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
+                    intent.putExtra("account", loggedInAcct);
+                    startActivity(intent);
+                    finishAffinity();
+                } else {
+                    Intent intent = new Intent(IndividualRecipePage.this, Homepage.class);
+                    intent.putExtra("account", loggedInAcct);
+                    startActivity(intent);
+                    finishAffinity();
+
+                }
             }
         });
 

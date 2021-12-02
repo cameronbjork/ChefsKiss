@@ -62,13 +62,18 @@ public class CreateRecipe extends AppCompatActivity{
             }
         });
 
-
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String titleString = title.getText().toString();
                 String descriptionString = description.getText().toString();
+                if (descriptionString == null) {
+                    descriptionString = " ";
+                }
                 String ingredientsString = ingredients.getText().toString();
+                if (ingredientsString == null) {
+                    ingredientsString = " ";
+                }
 
                 //*** Checking if the description is greater than 1000 characters
                 if (descriptionString.length() < 1000) {

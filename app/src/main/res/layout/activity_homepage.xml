@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Homepage">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,9 +21,9 @@
                 android:id="@+id/topAppbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title=""
+                android:background="@color/white"
                 app:navigationIcon="@drawable/ic_menu"
-                android:background="@color/white"/>
+                app:title="" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -30,8 +31,7 @@
             android:id="@+id/mealCalendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            >
+            android:layout_marginTop="125dp">
 
         </org.naishadhparmar.zcustomcalendar.CustomCalendar>
 
@@ -39,13 +39,26 @@
             android:id="@+id/mealCalendarList"
             android:layout_width="match_parent"
             android:layout_height="521dp"
-            android:layout_marginTop="400dp">
+            android:layout_marginTop="425dp">
 
         </ListView>
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="399dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/mealCalendar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="-56dp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="cursive"
+            android:text="Schedule Your Recipe's"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

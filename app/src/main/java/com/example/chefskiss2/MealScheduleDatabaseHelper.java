@@ -64,6 +64,40 @@ public class MealScheduleDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public ArrayList<Meal> getMealsForMonth(String month, Account loggedInAcct) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer id = loggedInAcct.getId();
+        Cursor cursor = db.rawQuery("select * from " + MEAL_TABLE + " where " + COLUMN_ID + "=?", new String[]{id.toString()});
+
+        ArrayList<Meal> meals = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                int tempCurs = cursor.getColumnIndex(COLUMN_ID);
+                int id1 = cursor.getInt(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_DATE);
+                String dateFromQ = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_TITLE);
+                String recipeTitle = cursor.getString(tempCurs);
+
+                tempCurs = cursor.getColumnIndex(COLUMN_TIME);
+                String time = cursor.getString(tempCurs);
+
+                Meal meal = new Meal(id1, dateFromQ, recipeTitle, time);
+                String[] mealDate = meal.getDate().split("/");
+
+                if(mealDate[1].equals(month)) {
+                    meals.add(meal);
+                }
+                cursor.moveToNext();
+            }
+        }
+        return meals;
+
+    }
+
     public ArrayList<Meal> getMealsForDate(String date, Account loggedInAcct) {
         SQLiteDatabase db = this.getReadableDatabase();
         Integer id = loggedInAcct.getId();
@@ -91,6 +125,9 @@ public class MealScheduleDatabaseHelper extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+
+
+
         return meals;
     }
 

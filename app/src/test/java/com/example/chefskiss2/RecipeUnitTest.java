@@ -28,7 +28,7 @@ public class RecipeUnitTest {
     }
 
     @Test
-    public void getDirerctionsTest() {
+    public void getDirectionsTest() {
         assertEquals("directions", r1.getDirections());
     }
 
@@ -36,4 +36,7 @@ public class RecipeUnitTest {
     public void getImageArrayTest() {
         assertNotNull(r1.getImageURI());
     }
+
+    @Test
+    public void returnSearchResultsTest() {}
 }

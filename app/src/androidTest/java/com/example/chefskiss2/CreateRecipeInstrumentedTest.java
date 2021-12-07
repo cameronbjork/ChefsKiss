@@ -23,26 +23,32 @@ import java.util.ArrayList;
 
 @RunWith(AndroidJUnit4.class)
 public class CreateRecipeInstrumentedTest {
-    public ActivityScenario scenario;
     private Account loggedInAcct = new Account(100,"cam", "@.com", "pass");
+    private Intent intent = new Intent(getApplicationContext(), CreateRecipe.class)
+            .putExtra("account", loggedInAcct);
     @Rule
-    public ActivityScenarioRule<CreateRecipe> activityRule = new ActivityScenarioRule(new Intent(getApplicationContext(), CreateRecipe.class)
-            .putExtra("account", loggedInAcct));
+    public ActivityScenarioRule<CreateRecipe> activityRule = new ActivityScenarioRule<>(intent);
 
     @Before
     public void init() {
-        scenario = activityRule.getScenario();
-        scenario.moveToState(Lifecycle.State.CREATED);
+        //scenario = activityRule.getScenario();
+        //scenario.moveToState(Lifecycle.State.CREATED);
     }
 
     @Test
     public void onCreateTest() {
+        ActivityScenario scenario = activityRule.getScenario();
+        scenario.moveToState(Lifecycle.State.CREATED);
         //Tests that the program is started in the before
         assertEquals(Lifecycle.State.CREATED, scenario.getState());
+        scenario.close();
     }
 
     @Test
     public void correctInfoTest() {
+        ActivityScenario scenario = activityRule.getScenario();
+        scenario.moveToState(Lifecycle.State.CREATED);
+        scenario.launch(CreateRecipe.class);
         scenario.onActivity(activity -> {
             EditText name = activity.findViewById(R.id.editTextTitle);
             EditText description = activity.findViewById(R.id.editTextDescription);
@@ -66,15 +72,19 @@ public class CreateRecipeInstrumentedTest {
             rdb.close();
 
         });
+        scenario.close();
     }
 
     @After
     public void removeScenario() {
+        ActivityScenario scenario = activityRule.getScenario();
+        scenario.moveToState(Lifecycle.State.CREATED);
         scenario.onActivity(activity -> {
             RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(activity.getApplicationContext());
             Recipe r = new Recipe(100, "Name", "desc", "ingredients");
             rdb.deleteOne(r);
         });
+        scenario.close();
     }
 
 }

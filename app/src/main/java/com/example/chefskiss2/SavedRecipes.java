@@ -112,6 +112,7 @@ public class SavedRecipes extends AppCompatActivity {
                 Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
                 intent.putExtra("account", loggedInAcct);
                 intent.putExtra("recipe", r);
+                intent.putExtra("from", "Saved");
                 startActivity(intent);
                 finishAffinity();
             }

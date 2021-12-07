@@ -69,14 +69,12 @@ public class AccountInfoPage extends AppCompatActivity {
 
                     case R.id.nav_home:
                         Intent intent = new Intent(AccountInfoPage.this, Homepage.class);
-                        Toast.makeText(AccountInfoPage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         intent.putExtra("account", loggedInAcct);
                         startActivity(intent);
                         finishAffinity();
                         break;
                     case R.id.nav_saved_recipes:
                         Intent intent1 = new Intent(AccountInfoPage.this, SavedRecipes.class);
-                        Toast.makeText(AccountInfoPage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         intent1.putExtra("account", loggedInAcct);
                         startActivity(intent1);
                         finishAffinity();
@@ -85,14 +83,12 @@ public class AccountInfoPage extends AppCompatActivity {
                         Intent intent2 = new Intent(AccountInfoPage.this, CreateRecipe.class);
                         intent2.putExtra("account", loggedInAcct);
                         startActivity(intent2);
-                        Toast.makeText(AccountInfoPage.this, "Create Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         finishAffinity();
                         break;
                     case R.id.nav_account:
                         Intent intent3 = new Intent(AccountInfoPage.this, AccountInfoPage.class);
                         intent3.putExtra("account", loggedInAcct);
                         startActivity(intent3);
-                        Toast.makeText(AccountInfoPage.this, "Account is Clicked",Toast.LENGTH_SHORT).show();
                         finishAffinity();
                         break;
                     case R.id.nav_log_out:

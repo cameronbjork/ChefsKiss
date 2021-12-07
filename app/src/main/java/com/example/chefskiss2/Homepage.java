@@ -1,6 +1,7 @@
 package com.example.chefskiss2;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,12 +45,14 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
     private int tempClickPosition = 0;
     private Account loggedInAcct;
     private int someSelected = 0;
+    private MealScheduleListAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
 
         loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
@@ -78,14 +81,12 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
 
                     case R.id.nav_home:
                         Intent intent = new Intent(Homepage.this, Homepage.class);
-                        Toast.makeText(Homepage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         intent.putExtra("account", loggedInAcct);
                         startActivity(intent);
                         finishAffinity();
                         break;
                     case R.id.nav_saved_recipes:
                         Intent intent1 = new Intent(Homepage.this, SavedRecipes.class);
-                        Toast.makeText(Homepage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         intent1.putExtra("account", loggedInAcct);
                         startActivity(intent1);
                         finishAffinity();
@@ -156,7 +157,7 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
         dateHashMap.put(calendar.get(Calendar.DAY_OF_MONTH), "current");
 
         //Get all meals saved in DB
-        MealScheduleDatabaseHelper mdb = new MealScheduleDatabaseHelper(getApplicationContext());
+        MealScheduleDatabaseHelper mdb = new MealScheduleDatabaseHelper(this);
         ArrayList<Meal> mealsforMonth = mdb.getMealsForMonth( "" + calendar.get(Calendar.MONTH), loggedInAcct);
         mdb.close();
 
@@ -167,12 +168,12 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
         for (int i = 0; i < mealsforMonth.size(); i++) {
 
             //if the date is the same as the previous entry,
-            if(mealsforMonth.get(i).getDate().equals(currentDay) || currentDay == "") {
-                if (mealsforMonth.get(i).getTime() == "B") {
+            if(mealsforMonth.get(i).getDate().equals(currentDay) || currentDay.equals("")) {
+                if (mealsforMonth.get(i).getTime().equals("B")) {
                     b = true;
-                } else if (mealsforMonth.get(i).getTime() == "L") {
+                } else if (mealsforMonth.get(i).getTime().equals("L")) {
                     l = true;
-                } else if (mealsforMonth.get(i).getTime() == "D") {
+                } else if (mealsforMonth.get(i).getTime().equals("D")) {
                     d = true;
                 }
             } else {
@@ -180,11 +181,11 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
                 l = false;
                 d = false;
 
-                if (mealsforMonth.get(i).getTime() == "B") {
+                if (mealsforMonth.get(i).getTime().equals(("B"))) {
                     b = true;
-                } else if (mealsforMonth.get(i).getTime() == "L") {
+                } else if (mealsforMonth.get(i).getTime().equals("L")) {
                     l = true;
-                } else if (mealsforMonth.get(i).getTime() == "D") {
+                } else if (mealsforMonth.get(i).getTime().equals("D")) {
                     d = true;
                 }
             }
@@ -308,7 +309,7 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
                 }
 
                 //Creates the list
-                MealScheduleListAdapter adapter = new MealScheduleListAdapter(getApplicationContext(), R.layout.adapter_meal_layout, breakLunDin);
+                adapter = new MealScheduleListAdapter(getApplicationContext(), R.layout.adapter_meal_layout, breakLunDin);
                 mealCalendarlist.setAdapter(adapter);
 
                 //When specific meal or schedule is clicked.
@@ -335,10 +336,11 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
                                 }
                             }
 
-                            Intent intent2 = new Intent(Homepage.this, IndividualRecipePage.class);
+                            Intent intent2 = new Intent(Homepage.this, ViewIndividualMeal.class);
                             intent2.putExtra("account", loggedInAcct);
                             intent2.putExtra("recipe", recipeToSend);
-                            intent2.putExtra("from", "Home");
+                            intent2.putExtra("date", sDate);
+                            intent2.putExtra("time", item[0]);
                             startActivity(intent2);
                             finish();
                         }

@@ -131,4 +131,26 @@ public class MealScheduleDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public void delete(Account loggedIn, Recipe recipe, String date, String time) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer id = loggedIn.getId();
+
+        long delete = 0;
+
+        if (time.equals("Breakfast")) {
+            delete = db.delete(MEAL_TABLE, COLUMN_ID + " =? and " + COLUMN_DATE + " =? and "
+                            + COLUMN_TIME + " =?",
+                    new String[]{id.toString(), date, "B"});
+        } else if (time.equals("Lunch")) {
+            delete = db.delete(MEAL_TABLE, COLUMN_ID + " =? and " + COLUMN_DATE + " =? and "
+                            + COLUMN_TIME + " =?",
+                    new String[]{id.toString(), date, "L"});
+        } else if (time.equals("Dinner")) {
+            delete = db.delete(MEAL_TABLE, COLUMN_ID + " =? and " + COLUMN_DATE + " =? and "
+                            + COLUMN_TIME + " =?",
+                    new String[]{id.toString(), date, "D"});
+        }
+
+        db.close();
+    }
 }

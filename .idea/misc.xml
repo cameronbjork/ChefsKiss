@@ -55,6 +55,7 @@
         <entry key="app/src/main/res/layout/create_account_layout.xml" value="0.15989583333333332" />
 =======
         <entry key="app/src/main/res/layout/activity_select_recipe.xml" value="0.18838789376158122" />
+        <entry key="app/src/main/res/layout/activity_view_individual_meal.xml" value="0.335" />
         <entry key="app/src/main/res/layout/adapter_meal_layout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/adapter_recipe_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/adapter_view_layout.xml" value="0.1381340579710145" />

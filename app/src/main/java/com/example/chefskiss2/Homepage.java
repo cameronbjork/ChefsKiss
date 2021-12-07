@@ -21,9 +21,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
-import org.naishadhparmar.zcustomcalendar.*;
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
+import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
 import java.util.ArrayList;
@@ -78,12 +78,14 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
 
                     case R.id.nav_home:
                         Intent intent = new Intent(Homepage.this, Homepage.class);
+                        Toast.makeText(Homepage.this, "Home is Clicked",Toast.LENGTH_SHORT).show();
                         intent.putExtra("account", loggedInAcct);
                         startActivity(intent);
                         finishAffinity();
                         break;
                     case R.id.nav_saved_recipes:
                         Intent intent1 = new Intent(Homepage.this, SavedRecipes.class);
+                        Toast.makeText(Homepage.this, "Saved Recipes is Clicked",Toast.LENGTH_SHORT).show();
                         intent1.putExtra("account", loggedInAcct);
                         startActivity(intent1);
                         finishAffinity();
@@ -112,7 +114,6 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
                 return true;
             }
         });
-
 
         //Meal Calendar
         mealCalendarlist = (ListView) findViewById(R.id.mealCalendarList);
@@ -346,7 +347,6 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
 
             }
         });
-
     }
 
     //This is whenever the page is navigated to a different month.

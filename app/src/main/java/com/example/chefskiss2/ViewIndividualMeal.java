@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 
-public class IndividualRecipePage extends AppCompatActivity{
+public class ViewIndividualMeal extends AppCompatActivity{
     public RecipeController RC;
     private String imageURI = "";
     final int PICK_IMAGE = 100;
@@ -27,11 +27,13 @@ public class IndividualRecipePage extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_individual_recipe_page);
+        setContentView(R.layout.activity_view_individual_meal);
         RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(this);
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
         Recipe recipeIn = (Recipe) getIntent().getSerializableExtra("recipe");
+        String timeOfDay = (String) getIntent().getSerializableExtra("time");
+        String date = (String) getIntent().getSerializableExtra("date");
 
         //initialized
         EditText title = (EditText) findViewById(R.id.viewRecipeName);
@@ -55,13 +57,14 @@ public class IndividualRecipePage extends AppCompatActivity{
                 startActivityForResult(gallery, PICK_IMAGE);
             }
         });
-        Button deleteRecipe = (Button) findViewById(R.id.deleteRecipe);
 
+        Button deleteRecipe = (Button) findViewById(R.id.deleteRecipe);
         deleteRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rdb.deleteOne(recipeIn);
-                Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
+                MealScheduleDatabaseHelper mdb = new MealScheduleDatabaseHelper(getApplicationContext());
+                mdb.delete(loggedInAcct, recipeIn, date, timeOfDay);
+                Intent intent = new Intent(ViewIndividualMeal.this, Homepage.class);
                 intent.putExtra("account", loggedInAcct);
                 startActivity(intent);
                 finishAffinity();
@@ -76,8 +79,7 @@ public class IndividualRecipePage extends AppCompatActivity{
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    Intent intent = new Intent(IndividualRecipePage.this, SavedRecipes.class);
+                    Intent intent = new Intent(ViewIndividualMeal.this, Homepage.class);
                     intent.putExtra("account", loggedInAcct);
                     startActivity(intent);
                     finishAffinity();
@@ -106,13 +108,13 @@ public class IndividualRecipePage extends AppCompatActivity{
                     rdb.updateOne(recipeIn, recipe);
                     rdb.close();
 
-                    Intent intent = new Intent(IndividualRecipePage.this, IndividualRecipePage.class);
+                    Intent intent = new Intent(ViewIndividualMeal.this, IndividualRecipePage.class);
                     intent.putExtra("account", loggedInAcct);
                     intent.putExtra("recipe", recipe);
                     startActivity(intent);
                     finishAffinity();
                 } else {
-                    Toast.makeText(IndividualRecipePage.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewIndividualMeal.this, "Description must be less than 1000 characters", Toast.LENGTH_SHORT).show();
                 }
 
             }

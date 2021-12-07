@@ -51,7 +51,7 @@ public class MealScheduleListAdapter extends ArrayAdapter<String[]> {
 
         TextView recipeTitle = (TextView) convertView.findViewById(R.id.recipeName);
         if(recipeName.equals("")) {
-            recipeTitle.setText("No Recipe Scheduled");
+            recipeTitle.setText("+");
         } else {
             recipeTitle.setText(recipeName);
         }

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 
 public class SavedRecipes extends AppCompatActivity {
 
-    private Account loggedInAcct;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private MaterialToolbar toolbar;
@@ -33,26 +32,6 @@ public class SavedRecipes extends AppCompatActivity {
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
 
-        ListView list = (ListView) findViewById(R.id.recipeList);
-
-        RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(this);
-
-        ArrayList<Recipe> recipeList = rdb.getSavedRecipes(loggedInAcct);
-        rdb.close();
-        RecipeListAdapter adapter = new RecipeListAdapter(this, R.layout.adapter_recipe_layout, recipeList);
-        list.setAdapter(adapter);
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Recipe r = (Recipe) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
-                intent.putExtra("recipe", r);
-                intent.putExtra("account", loggedInAcct);
-                startActivity(intent);
-                finishAffinity();
-            }
-        });
 
         toolbar = (MaterialToolbar) findViewById(R.id.topAppbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -116,5 +95,27 @@ public class SavedRecipes extends AppCompatActivity {
                 return true;
             }
         });
+
+        ListView list = (ListView) findViewById(R.id.recipeList);
+
+        RecipeDatabaseHelper rdb = new RecipeDatabaseHelper(this);
+
+        ArrayList<Recipe> recipeList = rdb.getSavedRecipes(loggedInAcct);
+        rdb.close();
+        RecipeListAdapter adapter = new RecipeListAdapter(this, R.layout.adapter_recipe_layout, recipeList);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Recipe r = (Recipe) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
+                intent.putExtra("account", loggedInAcct);
+                intent.putExtra("recipe", r);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
     }
 }

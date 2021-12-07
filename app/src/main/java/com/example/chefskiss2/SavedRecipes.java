@@ -19,6 +19,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+
+//GEts the saved recipse
 public class SavedRecipes extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;

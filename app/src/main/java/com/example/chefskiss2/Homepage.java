@@ -22,9 +22,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
-import org.naishadhparmar.zcustomcalendar.*;
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
+import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
 import java.util.ArrayList;
@@ -116,7 +116,6 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
             }
         });
 
-
         //Meal Calendar
         mealCalendarlist = (ListView) findViewById(R.id.mealCalendarList);
         mealCalendar = findViewById(R.id.mealCalendar);
@@ -169,12 +168,12 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
         for (int i = 0; i < mealsforMonth.size(); i++) {
 
             //if the date is the same as the previous entry,
-            if(mealsforMonth.get(i).getDate().equals(currentDay) || currentDay == "") {
-                if (mealsforMonth.get(i).getTime() == "B") {
+            if(mealsforMonth.get(i).getDate().equals(currentDay) || currentDay.equals("")) {
+                if (mealsforMonth.get(i).getTime().equals("B")) {
                     b = true;
-                } else if (mealsforMonth.get(i).getTime() == "L") {
+                } else if (mealsforMonth.get(i).getTime().equals("L")) {
                     l = true;
-                } else if (mealsforMonth.get(i).getTime() == "D") {
+                } else if (mealsforMonth.get(i).getTime().equals("D")) {
                     d = true;
                 }
             } else {
@@ -182,11 +181,11 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
                 l = false;
                 d = false;
 
-                if (mealsforMonth.get(i).getTime() == "B") {
+                if (mealsforMonth.get(i).getTime().equals(("B"))) {
                     b = true;
-                } else if (mealsforMonth.get(i).getTime() == "L") {
+                } else if (mealsforMonth.get(i).getTime().equals("L")) {
                     l = true;
-                } else if (mealsforMonth.get(i).getTime() == "D") {
+                } else if (mealsforMonth.get(i).getTime().equals("D")) {
                     d = true;
                 }
             }
@@ -350,7 +349,6 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
 
             }
         });
-
     }
 
     //This is whenever the page is navigated to a different month.

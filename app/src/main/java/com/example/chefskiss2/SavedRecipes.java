@@ -1,29 +1,31 @@
 package com.example.chefskiss2;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ImageViewCompat;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-import java.io.ByteArrayOutputStream;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.ArrayList;
 
+
+//GEts the saved recipse
 public class SavedRecipes extends AppCompatActivity {
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,66 @@ public class SavedRecipes extends AppCompatActivity {
         setContentView(R.layout.activity_saved_recipes);
 
         Account loggedInAcct = (Account) getIntent().getSerializableExtra("account");
+
+
+        toolbar = (MaterialToolbar) findViewById(R.id.topAppbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                drawerLayout.openDrawer(GravityCompat.START);
+                TextView text = findViewById(R.id.nav_menu_name);
+                text.setText(loggedInAcct.getUsername());
+
+            }
+        });
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+                //drawerLayout.closeDrawer(GravityCompat.START);
+                switch (id)
+                {
+
+                    case R.id.nav_home:
+                        Intent intent = new Intent(SavedRecipes.this, Homepage.class);
+                        intent.putExtra("account", loggedInAcct);
+                        startActivity(intent);
+                        finishAffinity();
+                        break;
+                    case R.id.nav_saved_recipes:
+                        Intent intent1 = new Intent(SavedRecipes.this, SavedRecipes.class);
+                        intent1.putExtra("account", loggedInAcct);
+                        startActivity(intent1);
+                        finishAffinity();
+                        break;
+                    case R.id.nav_create_recipes:
+                        Intent intent2 = new Intent(SavedRecipes.this, CreateRecipe.class);
+                        intent2.putExtra("account", loggedInAcct);
+                        startActivity(intent2);
+                        finishAffinity();
+                        break;
+                    case R.id.nav_account:
+                        Intent intent3 = new Intent(SavedRecipes.this, AccountInfoPage.class);
+                        intent3.putExtra("account", loggedInAcct);
+                        startActivity(intent3);
+                        finishAffinity();
+                        break;
+                    case R.id.nav_log_out:
+                        Intent intent4 = new Intent(SavedRecipes.this, MainActivity.class);
+                        startActivity(intent4);
+                        finishAffinity();
+                        break;
+                    default:
+                        return true;
+                }
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
 
         ListView list = (ListView) findViewById(R.id.recipeList);
 
@@ -46,23 +108,13 @@ public class SavedRecipes extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Recipe r = (Recipe) adapterView.getItemAtPosition(i);
                 Intent intent = new Intent(SavedRecipes.this, IndividualRecipePage.class);
-                intent.putExtra("recipe", r);
                 intent.putExtra("account", loggedInAcct);
+                intent.putExtra("recipe", r);
                 intent.putExtra("from", "Saved");
                 startActivity(intent);
                 finishAffinity();
             }
         });
 
-        Button backBtn = (Button) findViewById(R.id.back);
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SavedRecipes.this, Homepage.class);
-                intent.putExtra("account", loggedInAcct);
-                startActivity(intent);
-                finishAffinity();
-            }
-        });
     }
 }

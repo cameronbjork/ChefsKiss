@@ -3,8 +3,6 @@ package com.example.chefskiss2;
 import static android.net.Uri.parse;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.ByteArrayOutputStream;
 
 public class IndividualRecipePage extends AppCompatActivity{
     public RecipeController RC;

@@ -158,6 +158,7 @@ public class Homepage extends AppCompatActivity implements OnNavigationButtonCli
 
         //Get all meals saved in DB
         MealScheduleDatabaseHelper mdb = new MealScheduleDatabaseHelper(this);
+        mdb.getReadableDatabase();
         ArrayList<Meal> mealsforMonth = mdb.getMealsForMonth( "" + calendar.get(Calendar.MONTH), loggedInAcct);
         mdb.close();
 
